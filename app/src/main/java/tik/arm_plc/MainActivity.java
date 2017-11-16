@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     private Button enableButton;
     private TextView mResultEditText;
     private TextView text2;
+    private TextView text3;
+    private TextView text4;
     private Switch mSwitch;
 
 
@@ -74,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
         mResultEditText = (TextView)findViewById(R.id.textView8);
 
         text2 = (TextView) findViewById(R.id.textView11);
+        text3 = (TextView) findViewById(R.id.textView13);
+        text4 = (TextView) findViewById(R.id.textView15);
 
         mSwitch = (Switch) findViewById(R.id.switch3);
         // устанавливаем переключатель программно в значение ON
@@ -86,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
                 // в зависимости от значения isChecked выводим нужное сообщение
                 if (isChecked) {
 
-                    Toast.makeText(getApplicationContext(), String.valueOf(isPortOpen("192.168.100.5", 300, 3000)), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), String.valueOf(isPortOpen("192.168.100.5", 300, 3000)), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Опрос включен", Toast.LENGTH_SHORT).show();
 
 
 
@@ -229,9 +234,21 @@ public class MainActivity extends AppCompatActivity {
 
                 m.connect();
 
-                registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
-
+                while(mSwitch.isChecked()) {
+                    registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            text2.setText(String.valueOf(registerValues[0]));
+                            text3.setText(String.valueOf(registerValues[1]));
+                            text4.setText(String.valueOf(registerValues[2]));
+                        }
+                    });
+                }
+                
                 m.disconnect();
+
+
 
 
             }
@@ -245,10 +262,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         protected void onPostExecute(String result) {
-
-
-
-                text2.setText("conn3");
 
 
             }
