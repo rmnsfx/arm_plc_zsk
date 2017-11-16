@@ -2,18 +2,14 @@ package tik.arm_plc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.*;
 import android.net.wifi.WifiManager;
 import android.net.wifi.WifiInfo;
-import android.os.Bundle;
 import android.os.Handler;
-import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Switch;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.CompoundButton;
@@ -25,7 +21,6 @@ import java.io.IOException;
 
 import java.net.InetAddress;
 import java.net.*;
-import java.io.*;
 //import net.wimpi.modbus.*;
 //import net.wimpi.modbus.msg.*;
 //import net.wimpi.modbus.io.*;
@@ -33,16 +28,7 @@ import java.io.*;
 //import net.wimpi.modbus.util.*;
 
 import com.invertor.modbus.*;
-import com.invertor.modbus.data.HoldingRegisters;
-import com.invertor.modbus.exception.ModbusIOException;
-import com.invertor.modbus.exception.ModbusNumberException;
-import com.invertor.modbus.exception.ModbusProtocolException;
-import com.invertor.modbus.msg.request.ReadHoldingRegistersRequest;
-import com.invertor.modbus.msg.response.ReadHoldingRegistersResponse;
 import com.invertor.modbus.tcp.TcpParameters;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 import android.os.AsyncTask;
 
@@ -52,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button enableButton;
     private TextView mResultEditText;
-    public TextView text2;
+    private TextView text2;
     private Switch mSwitch;
 
 
@@ -87,8 +73,7 @@ public class MainActivity extends AppCompatActivity {
         enableButton = (Button)findViewById(R.id.button1);
         mResultEditText = (TextView)findViewById(R.id.textView8);
 
-
-
+        text2 = (TextView) findViewById(R.id.textView11);
 
         mSwitch = (Switch) findViewById(R.id.switch3);
         // устанавливаем переключатель программно в значение ON
@@ -103,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), String.valueOf(isPortOpen("192.168.100.5", 300, 3000)), Toast.LENGTH_SHORT).show();
 
-                    text2 = (TextView)findViewById(R.id.textView11);
+
 
 
 
@@ -222,35 +207,13 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-    public class SocketTask extends AsyncTask<String, Void, String> {
+    public class SocketTask extends AsyncTask<Void, Void, Void> {
 
-        protected String doInBackground(String... args) {
+
+        protected Void doInBackground(Void... params) {
             try {
 
                 InetAddress serverAddr = InetAddress.getByName("192.168.100.5");
-//                con = new TCPMasterConnection(serverAddr);
-//                con.setPort(502);
-//                con.connect();
-//
-//                //3. Prepare the request
-//                req.setUnitID(1);
-//                req = new ReadInputDiscretesRequest(ref, count);
-//
-//                //4. Prepare the transaction
-//                trans = new ModbusTCPTransaction(con);
-//                trans.setRequest(req);
-//
-//                //5. Execute the transaction repeat times
-//                int k = 0;
-//                do {
-//                    //trans.execute();
-//                    //res = (ReadInputDiscretesResponse) trans.getResponse();
-//                    System.out.println("Digital Inputs Status=" + res.getDiscretes().toString());
-//                    k++;
-//                } while (k < repeat);
-//
-//                //6. Close the connection
-//                con.close();
 
                 tcpParameters = new TcpParameters();
                 tcpParameters.setHost(serverAddr);
@@ -270,6 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
                 m.disconnect();
 
+
             }
             catch (Exception e)
             {
@@ -279,10 +243,15 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
 
+
         protected void onPostExecute(String result) {
 
-            }
 
+
+                text2.setText("conn3");
+
+
+            }
     }
 
 

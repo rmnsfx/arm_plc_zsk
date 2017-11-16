@@ -111,15 +111,18 @@
                 <TextView
                         android:text="Виброскорость. Нижняя предупр. уставка, мм/с"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" android:id="@+id/textView16" android:layout_weight="1"
+                        android:layout_height="wrap_content" android:id="@+id/textView16" android:layout_weight="1"
                 />
                 <EditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/editText2" android:layout_weight="1" android:text="0"
-                        android:textAlignment="textEnd"/>
+                        android:id="@+id/editText2"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:background="@android:color/transparent"
+                        android:textAlignment="textEnd" android:textSize="14sp"/>
             </LinearLayout>
 
 
@@ -130,14 +133,17 @@
                 <TextView
                         android:text="Виброскорость. Верхняя предупр. уставка, мм/с"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:id="@+id/textView18" android:layout_weight="1"/>
+                        android:layout_height="wrap_content" android:id="@+id/textView18" android:layout_weight="1"/>
                 <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/editText6" android:layout_weight="1" android:text="0"
-                        android:textAlignment="textEnd"/>
+                        android:id="@+id/editText6"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:background="@android:color/transparent"
+                        android:textAlignment="textEnd" android:textSize="14sp"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -146,14 +152,17 @@
                 <TextView
                         android:text="Виброскорость. Аварийная уставка, мм/с"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:id="@+id/textView19" android:layout_weight="1"/>
+                        android:layout_height="wrap_content" android:id="@+id/textView19" android:layout_weight="1"/>
                 <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/editText7" android:layout_weight="1" android:text="0"
-                        android:textAlignment="textEnd"/>
+                        android:id="@+id/editText7"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:background="@android:color/transparent"
+                        android:textAlignment="textEnd" android:textSize="14sp"/>
             </LinearLayout>
 
 
