@@ -31,6 +31,7 @@ import com.invertor.modbus.*;
 import com.invertor.modbus.tcp.TcpParameters;
 
 import android.os.AsyncTask;
+import java.nio.ByteBuffer;
 
 
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button enableButton;
     private TextView mResultEditText;
+    private TextView text1;
     private TextView text2;
     private TextView text3;
     private TextView text4;
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         enableButton = (Button)findViewById(R.id.button1);
         mResultEditText = (TextView)findViewById(R.id.textView8);
 
+        text1 = (TextView) findViewById(R.id.textView8);
         text2 = (TextView) findViewById(R.id.textView11);
         text3 = (TextView) findViewById(R.id.textView13);
         text4 = (TextView) findViewById(R.id.textView15);
@@ -211,9 +214,24 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
 
+    public float swapIntToFloat(int intValue1, int intValue2) {
+
+        byte[] bytes = new byte[4];
+        byte[] bytes1 = ByteBuffer.allocate(4).putInt(intValue1).array();
+        byte[] bytes2 = ByteBuffer.allocate(4).putInt(intValue2).array();
+
+        bytes[0] = bytes1[2];
+        bytes[1] = bytes1[3];
+        bytes[2] = bytes2[2];
+        bytes[3] = bytes2[3];
+
+        return ByteBuffer.wrap(bytes).getFloat();
+    }
+
 
     public class SocketTask extends AsyncTask<Void, Void, Void> {
 
+        float value = 0;
 
         protected Void doInBackground(Void... params) {
             try {
@@ -229,23 +247,31 @@ public class MainActivity extends AppCompatActivity {
                 Modbus.setAutoIncrementTransactionId(true);
 
                 int slaveId = 1;
-                int offset = 0;
-                int quantity = 10;
+                int offset = 1117;
+                int quantity = 40;
+
+
+
 
                 m.connect();
 
                 while(mSwitch.isChecked()) {
                     registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
-                            text2.setText(String.valueOf(registerValues[0]));
-                            text3.setText(String.valueOf(registerValues[1]));
-                            text4.setText(String.valueOf(registerValues[2]));
+
+                            value = swapIntToFloat(registerValues[0], registerValues[1]);
+                            text1.setText(String.valueOf( value ));
+
+                            text2.setText(String.valueOf( (float) (registerValues[12] / (float)100) ));
+                            text3.setText(String.valueOf( (float) (registerValues[23] / (float)100) ));
+                            text4.setText(String.valueOf( (float) (registerValues[36] / (float)100) ));
                         }
                     });
                 }
-                
+
                 m.disconnect();
 
 
