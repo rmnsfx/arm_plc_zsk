@@ -214,16 +214,25 @@ public class MainActivity extends AppCompatActivity {
 //        });
 //    }
 
-    public float swapIntToFloat(int intValue1, int intValue2) {
+    public float swapIntToFloat(int intValue1, int intValue2, int swap) {
 
         byte[] bytes = new byte[4];
         byte[] bytes1 = ByteBuffer.allocate(4).putInt(intValue1).array();
         byte[] bytes2 = ByteBuffer.allocate(4).putInt(intValue2).array();
 
-        bytes[0] = bytes1[2];
-        bytes[1] = bytes1[3];
-        bytes[2] = bytes2[2];
-        bytes[3] = bytes2[3];
+        if (swap == 1) {
+            bytes[0] = bytes1[2];
+            bytes[1] = bytes1[3];
+            bytes[2] = bytes2[2];
+            bytes[3] = bytes2[3];
+        }
+        else
+        {
+            bytes[0] = bytes1[2];
+            bytes[1] = bytes1[3];
+            bytes[2] = bytes2[2];
+            bytes[3] = bytes2[3];
+        }
 
         return ByteBuffer.wrap(bytes).getFloat();
     }
@@ -236,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         protected Void doInBackground(Void... params) {
             try {
 
-                InetAddress serverAddr = InetAddress.getByName("192.168.100.5");
+                InetAddress serverAddr = InetAddress.getByName("192.168.5.241");
 
                 tcpParameters = new TcpParameters();
                 tcpParameters.setHost(serverAddr);
@@ -247,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                 Modbus.setAutoIncrementTransactionId(true);
 
                 int slaveId = 1;
-                int offset = 1117;
+                int offset = 1116;
                 int quantity = 40;
 
 
@@ -262,14 +271,30 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void run() {
 
-                            value = swapIntToFloat(registerValues[0], registerValues[1]);
+                            value = swapIntToFloat(registerValues[0], registerValues[1], 0);
                             text1.setText(String.valueOf( value ));
 
-                            text2.setText(String.valueOf( (float) (registerValues[12] / (float)100) ));
-                            text3.setText(String.valueOf( (float) (registerValues[23] / (float)100) ));
-                            text4.setText(String.valueOf( (float) (registerValues[36] / (float)100) ));
+                            value = swapIntToFloat(registerValues[12], registerValues[13], 1);
+                            text2.setText(String.valueOf( value ));
+
+                            value = swapIntToFloat(registerValues[24], registerValues[25], 1);
+                            text3.setText(String.valueOf( value ));
+
+                            value = swapIntToFloat(registerValues[36], registerValues[37], 1);
+                            text4.setText(String.valueOf( value ));
+
+//                            text2.setText(String.valueOf( (float) (registerValues[11] / (float)100) ));
+//                            text3.setText(String.valueOf( (float) (registerValues[23] / (float)100) ));
+//                            text4.setText(String.valueOf( (float) (registerValues[35] / (float)100) ));
+
                         }
                     });
+
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 m.disconnect();
