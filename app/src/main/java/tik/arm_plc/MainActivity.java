@@ -28,6 +28,7 @@ import java.net.*;
 //import net.wimpi.modbus.util.*;
 
 import com.invertor.modbus.*;
+import com.invertor.modbus.exception.ModbusIOException;
 import com.invertor.modbus.tcp.TcpParameters;
 
 import android.os.AsyncTask;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView text2;
     private TextView text3;
     private TextView text4;
+    private TextView text5;
+    private TextView text6;
     private Switch mSwitch;
 
 
@@ -67,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
     private Socket socket;
 
     int[] registerValues;
+    int[] registerValues2;
 
 
     @Override
@@ -82,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         text3 = (TextView) findViewById(R.id.textView13);
         text4 = (TextView) findViewById(R.id.textView15);
 
+        text5 = (TextView) findViewById(R.id.textView_relay2);
+        text6 = (TextView) findViewById(R.id.textView3_relay4);
+
         mSwitch = (Switch) findViewById(R.id.switch3);
         // устанавливаем переключатель программно в значение ON
         mSwitch.setChecked(false);
@@ -94,11 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
 
                     //Toast.makeText(getApplicationContext(), String.valueOf(isPortOpen("192.168.100.5", 300, 3000)), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getApplicationContext(), "Опрос включен", Toast.LENGTH_SHORT).show();
-
-
-
-
+                    //Toast.makeText(getApplicationContext(), "Опрос включен", Toast.LENGTH_SHORT).show();
 
 //                    Thread thread = new Thread() {
 //                        @Override
@@ -237,12 +240,21 @@ public class MainActivity extends AppCompatActivity {
         return ByteBuffer.wrap(bytes).getFloat();
     }
 
+    public static float round(float number, int scale) {
+        int pow = 10;
+        for (int i = 1; i < scale; i++)
+            pow *= 10;
+        float tmp = number * pow;
+        return ( (float) ( (int) ((tmp - (int) tmp) >= 0.5f ? tmp + 1 : tmp) ) ) / pow;
+    }
+
 
     public class SocketTask extends AsyncTask<Void, Void, Void> {
 
         float value = 0;
 
         protected Void doInBackground(Void... params) {
+
             try {
 
                 InetAddress serverAddr = InetAddress.getByName("192.168.5.241");
@@ -256,57 +268,90 @@ public class MainActivity extends AppCompatActivity {
                 Modbus.setAutoIncrementTransactionId(true);
 
                 int slaveId = 1;
-                int offset = 1116;
-                int quantity = 40;
-
-
-
+                int offset = 1000;
+                int quantity = 100;
+                int offset2 = offset + quantity;
+                String nameText;
 
                 m.connect();
 
-                while(mSwitch.isChecked()) {
-                    registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+                while(mSwitch.isChecked())
+                {
+                    try {
+                        registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+                        Thread.sleep(50);
+                        registerValues2 = m.readHoldingRegisters(slaveId, offset2, 60);
+                    }
+                    catch (ModbusIOException e) {
+                        e.printStackTrace();
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                text1.setText("-");
+                                text2.setText("-");
+                                text3.setText("-");
+                                text4.setText("-");
+                                text5.setText("-");
+                                text6.setText("-");
+                            }
+                        });
+                    }
 
                     mHandler.post(new Runnable() {
                         @Override
                         public void run() {
 
-                            value = swapIntToFloat(registerValues[0], registerValues[1], 0);
+                            value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
+                            value = round(value, 2);
                             text1.setText(String.valueOf( value ));
 
-                            value = swapIntToFloat(registerValues[12], registerValues[13], 1);
+                            value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
                             text2.setText(String.valueOf( value ));
 
-                            value = swapIntToFloat(registerValues[24], registerValues[25], 1);
+                            value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
                             text3.setText(String.valueOf( value ));
 
-                            value = swapIntToFloat(registerValues[36], registerValues[37], 1);
+                            value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
                             text4.setText(String.valueOf( value ));
 
-//                            text2.setText(String.valueOf( (float) (registerValues[11] / (float)100) ));
-//                            text3.setText(String.valueOf( (float) (registerValues[23] / (float)100) ));
-//                            text4.setText(String.valueOf( (float) (registerValues[35] / (float)100) ));
+                            text5.setText(String.valueOf( registerValues[82] ));
+
+                            text6.setText(String.valueOf( registerValues[83] ));
+
 
                         }
                     });
 
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+
+                    Thread.sleep(800);
+
                 }
 
                 m.disconnect();
-
-
-
 
             }
             catch (Exception e)
             {
                 e.printStackTrace();
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        mSwitch.toggle();
+
+                        Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
+            finally
+            {
+                try {
+                    m.disconnect();
+                } catch (ModbusIOException e) {
+                    e.printStackTrace();
+                }
+            }
+
 
             return null;
         }

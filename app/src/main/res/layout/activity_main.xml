@@ -131,12 +131,51 @@
 
             <LinearLayout
                     android:orientation="horizontal"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Виброскорость. Нижняя предупр. уставка, мм/с"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" android:id="@+id/textView16" android:layout_weight="1"
+                        android:text="Квитирование реле"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:id="@+id/textView" android:layout_weight="1"/>
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="0"
+                        android:ems="10"
+                        android:textSize="14sp"
+                        android:textAlignment="textEnd"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/editText" android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Задержка на срабатывание реле, мс"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_weight="1"/>
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="0"
+                        android:ems="10"
+                        android:textSize="14sp"
+                        android:textAlignment="textEnd"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/editText3" android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Виброскорость. Нижняя предупредительная уставка, мм/с"
+                        android:layout_width="289dp"
+                        android:layout_height="wrap_content" android:id="@+id/textView16"
                 />
                 <EditText
                         android:layout_width="match_parent"
@@ -156,9 +195,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
-                        android:text="Виброскорость. Верхняя предупр. уставка, мм/с"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView18" android:layout_weight="1"/>
+                        android:text="Виброскорость. Верхняя предупредительная уставка, мм/с"
+                        android:layout_width="289dp"
+                        android:layout_height="wrap_content" android:id="@+id/textView18"/>
                 <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -176,7 +215,7 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Виброскорость. Аварийная уставка, мм/с"
-                        android:layout_width="wrap_content"
+                        android:layout_width="289dp"
                         android:layout_height="wrap_content" android:id="@+id/textView19" android:layout_weight="1"/>
                 <EditText
                         android:layout_width="wrap_content"
@@ -196,7 +235,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" android:layout_marginTop="10dp">
                 <TextView
-                        android:text="Ось X. Нижняя предупр. уставка, град."
+                        android:text="Ось X. Нижняя предупредительная уставка, град."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView20"
@@ -216,7 +255,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось X. Верхняя предупр. уставка, град."
+                        android:text="Ось X. Верхняя предупредительная уставка, град."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/textView21" android:layout_weight="1"/>
                 <EditText
@@ -257,7 +296,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Y. Нижняя предупр. уставка, град."
+                        android:text="Ось Y. Нижняя предупредительная уставка, град."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/textView23" android:layout_weight="1"/>
                 <EditText
@@ -277,7 +316,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Y. Верхняя предупр. уставка, град."
+                        android:text="Ось Y. Верхняя предупредительная уставка, град."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/textView24" android:layout_weight="1"/>
                 <EditText
@@ -318,7 +357,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Z. Нижняя предупр. уставка, град."
+                        android:text="Ось Z. Нижняя предупредительная уставка, град."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/textView26" android:layout_weight="1"/>
                 <EditText
@@ -338,7 +377,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Z. Верхняя предупр. уставка, град."
+                        android:text="Ось Z. Верхняя предупредительная уставка, град."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" android:id="@+id/textView27" android:layout_weight="1"/>
                 <EditText
