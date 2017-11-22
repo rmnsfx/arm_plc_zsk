@@ -281,6 +281,31 @@ public class MainActivity extends AppCompatActivity {
                         registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
                         Thread.sleep(50);
                         registerValues2 = m.readHoldingRegisters(slaveId, offset2, 60);
+
+
+
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
+                                value = round(value, 2);
+                                text1.setText(String.valueOf( value ));
+
+                                value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
+                                text2.setText(String.valueOf( value ));
+
+                                value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
+                                text3.setText(String.valueOf( value ));
+
+                                value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
+                                text4.setText(String.valueOf( value ));
+
+                                text5.setText(String.valueOf( registerValues[82] ));
+
+                                text6.setText(String.valueOf( registerValues[83] ));
+                            }
+                        });
                     }
                     catch (ModbusIOException e) {
                         e.printStackTrace();
@@ -296,32 +321,6 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                     }
-
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-
-                            value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
-                            value = round(value, 2);
-                            text1.setText(String.valueOf( value ));
-
-                            value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
-                            text2.setText(String.valueOf( value ));
-
-                            value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
-                            text3.setText(String.valueOf( value ));
-
-                            value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
-                            text4.setText(String.valueOf( value ));
-
-                            text5.setText(String.valueOf( registerValues[82] ));
-
-                            text6.setText(String.valueOf( registerValues[83] ));
-
-
-                        }
-                    });
-
 
                     Thread.sleep(800);
 
