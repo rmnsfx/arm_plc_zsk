@@ -16,6 +16,9 @@ import android.widget.CompoundButton;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import java.io.IOException;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 //import javax.swing.*;
 
 
@@ -46,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
     private TextView text4;
     private TextView text5;
     private TextView text6;
+    private EditText text7;
+    private EditText text8;
+    private EditText text9;
+    private EditText text10;
     private Switch mSwitch;
 
 
@@ -72,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     int[] registerValues;
     int[] registerValues2;
 
+    int flag_write = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +97,19 @@ public class MainActivity extends AppCompatActivity {
 
         text5 = (TextView) findViewById(R.id.textView_relay2);
         text6 = (TextView) findViewById(R.id.textView3_relay4);
+
+        text7 = (EditText) findViewById(R.id.editText);
+        text7.setBackgroundResource(R.drawable.corner);
+
+        text8 = (EditText) findViewById(R.id.editText2);
+        text8.setBackgroundResource(R.drawable.corner);
+
+        text9 = (EditText) findViewById(R.id.editText3);
+        text9.setBackgroundResource(R.drawable.corner);
+
+        text10 = (EditText) findViewById(R.id.editText6);
+        text10.setBackgroundResource(R.drawable.corner);
+
 
         mSwitch = (Switch) findViewById(R.id.switch3);
         // устанавливаем переключатель программно в значение ON
@@ -133,11 +155,13 @@ public class MainActivity extends AppCompatActivity {
 
         enableButton.setOnClickListener(new OnClickListener(){
             public void onClick(View v) {
-                WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-                WifiInfo info = wifi.getConnectionInfo();
-                String ssid = info.getSSID();
-                mResultEditText.setText(ssid);
+//                WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+//                WifiInfo info = wifi.getConnectionInfo();
+//                String ssid = info.getSSID();
+//                mResultEditText.setText(ssid);
+                  flag_write = 1;
 
+                  enableButton.requestFocusFromTouch();
             }
         });
     }
@@ -180,42 +204,7 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     }
-//    public void receiveMyMessage() {
-//
-//
-//        mHandler.post(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//
-//
-//                // This gets executed on the UI thread so it can safely modify Views
-//                try {
-//                    InetAddress serverAddr = InetAddress.getByName("192.168.100.5");
-//                    TCPMasterConnection con = new TCPMasterConnection(serverAddr);
-//                    con.setPort(502);
-//                    //con.connect();
-//
-//                    Socket socket = new Socket();
-//                    socket.connect(new InetSocketAddress("192.168.100.5", 502), 1000);
-//
-//                    //text2.setText("conn2");
-//
-//                    Toast.makeText(getApplicationContext(), "Connect", Toast.LENGTH_SHORT).show();
-//                }
-//                catch (Exception e)
-//                {
-//                    e.printStackTrace();
-//
-//                    Toast.makeText(getApplicationContext(), "NOT Connect", Toast.LENGTH_SHORT).show();
-//
-//                    //text2.setText("conn3");
-//                }
-//
-//
-//            }
-//        });
-//    }
+
 
     public float swapIntToFloat(int intValue1, int intValue2, int swap) {
 
@@ -278,34 +267,52 @@ public class MainActivity extends AppCompatActivity {
                 while(mSwitch.isChecked())
                 {
                     try {
-                        registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
-                        Thread.sleep(50);
-                        registerValues2 = m.readHoldingRegisters(slaveId, offset2, 60);
 
-
-
-                        mHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
-                                value = round(value, 2);
-                                text1.setText(String.valueOf( value ));
-
-                                value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
-                                text2.setText(String.valueOf( value ));
-
-                                value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
-                                text3.setText(String.valueOf( value ));
-
-                                value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
-                                text4.setText(String.valueOf( value ));
-
-                                text5.setText(String.valueOf( registerValues[82] ));
-
-                                text6.setText(String.valueOf( registerValues[83] ));
+                        if (flag_write == 1)
+                        {
+                            try {
+                                m.writeSingleRegister(slaveId, 1086, 354);
+                                //m.writeSingleRegister(slaveId, 1108, 2749);
                             }
-                        });
+                            catch (ModbusIOException e) {
+                                e.printStackTrace();
+                            }
+
+                            flag_write = 0;
+                        }
+                        else {
+                            registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+                            Thread.sleep(50);
+                            registerValues2 = m.readHoldingRegisters(slaveId, offset2, 60);
+
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
+                                    value = round(value, 2);
+                                    text1.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
+                                    text2.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
+                                    text3.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
+                                    text4.setText(String.valueOf(value));
+
+                                    text5.setText(String.valueOf(registerValues[82]));
+
+                                    text6.setText(String.valueOf(registerValues[83]));
+
+                                    text7.setText(String.valueOf(registerValues[86]));
+                                }
+                            });
+                        }
+
+
                     }
                     catch (ModbusIOException e) {
                         e.printStackTrace();
@@ -322,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
                         });
                     }
 
-                    Thread.sleep(800);
+                    Thread.sleep(500);
 
                 }
 
@@ -361,106 +368,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
     }
-
-
-
-//        public void connectTCPModbus() {
-//            // Connect
-//            try {
-//
-//                InetAddress serverAddr = InetAddress.getByName("192.168.100.5");
-//                Socket socket = new Socket(serverAddr, 502);
-//
-//                //addr = InetAddress.getByName("192.168.100.5");
-//                //con = new TCPMasterConnection(addr);
-//                //2. Open the connection
-//
-//                //con.setPort(port);
-//                //con.connect();
-//
-////                //3. Prepare the request
-////                  req.setUnitID(ID)
-////                req = new ReadInputDiscretesRequest(ref, count);
-////
-////                //4. Prepare the transaction
-////                trans = new ModbusTCPTransaction(con);
-////                trans.setRequest(req);
-////
-////                //5. Execute the transaction repeat times
-////                int k = 0;
-////                do {
-////                    //trans.execute();
-////                    //res = (ReadInputDiscretesResponse) trans.getResponse();
-////                    System.out.println("Digital Inputs Status=" + res.getDiscretes().toString());
-////                    k++;
-////                } while (k < repeat);
-//
-//                //6. Close the connection
-////                con.close();
-//
-//
-//
-//
-//
-//
-//
-//                Toast.makeText(getApplicationContext(), "Connect", Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//            catch(Exception e){
-//                //text2 = (TextView)findViewById(R.id.textView11);
-//                //text2.setText("Error connection");
-//
-//                Toast.makeText(getApplicationContext(), "Error connection", Toast.LENGTH_SHORT).show();
-//            }
-//
-//            // Disconnect
-//            finally {
-//                //if (master != null) {
-//                //    master.disconnect();
-//                //}
-//            }
-//
-//
-//        }
-//    }
-
-
-
-//c boolean ConnectToNetwork( )
-//
-//ifiManager wifiManager = (WifiManager) getSystemService (Context.WIFI_SERVICE);
-//ifiInfo info = wifiManager.getConnectionInfo ();
-//tring ssid  = info.getSSID();
-//
-
-
-//    class InternetTask extends AsyncTask<Void, Void, Void> {
-//
-//        @Override
-//        protected Void doInBackground(Void... params) {
-//
-//            try {
-//
-////                InetAddress serverAddr = InetAddress.getByName("192.168.100.5");
-////                Socket socket = new Socket(serverAddr, 502);
-//
-//                text2.setText("connection2");
-//
-//            }
-//            catch(Exception e){
-//
-//                text2.setText("Error connection");
-//
-//                //Toast.makeText(getApplicationContext(), "Error connection", Toast.LENGTH_SHORT).show();
-//            }
-//            return null;
-//        }
-//
-//    }
-
-
 
 
 

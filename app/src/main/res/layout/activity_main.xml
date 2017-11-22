@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" tools:descendantFocusability="beforeDescendants">
 
     <android.support.constraint.ConstraintLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,7 +32,10 @@
                 <Switch
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/switch3" android:layout_weight="0"/>
+                        android:id="@+id/switch3"
+                        android:layout_weight="0"
+                        android:focusable="false"
+                        android:focusedByDefault="false"/>
 
             </LinearLayout>
 
@@ -103,11 +106,13 @@
                 <TextView
                         android:text="Предупредительное реле"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView_relay1" android:layout_weight="1"/>
+                        android:layout_height="wrap_content" android:id="@+id/textView_relay1"
+                        android:layout_weight="1"/>
                 <TextView
                         android:text="0"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView_relay2" android:layout_weight="0"/>
+                        android:layout_height="wrap_content" android:id="@+id/textView_relay2"
+                        android:layout_weight="0"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -116,11 +121,13 @@
                 <TextView
                         android:text="Аварийное реле"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView2_relay3" android:layout_weight="1"/>
+                        android:layout_height="wrap_content" android:id="@+id/textView2_relay3"
+                        android:layout_weight="1"/>
                 <TextView
                         android:text="0"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/textView3_relay4" android:layout_weight="0"/>
+                        android:layout_height="wrap_content" android:id="@+id/textView3_relay4"
+                        android:layout_weight="0"/>
             </LinearLayout>
             <View
                     android:layout_width="wrap_content"
@@ -135,18 +142,22 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Квитирование реле"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent" android:id="@+id/textView" android:layout_weight="1"/>
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        android:layout_weight="1"/>
                 <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:text="0"
                         android:ems="10"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:background="@android:color/transparent"
-                        android:id="@+id/editText" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText" android:ellipsize="end"
+                        android:layout_weight=".3"
+                        android:background="@android:color/transparent" />
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -154,18 +165,20 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Задержка на срабатывание реле, мс"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_weight="1"/>
                 <EditText
-                        android:layout_width="wrap_content"
+
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:text="0"
                         android:ems="10"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="@android:color/transparent"
-                        android:id="@+id/editText3" android:layout_weight="1"/>
+                        android:id="@+id/editText2" android:layout_weight=".3"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -174,17 +187,20 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Виброскорость. Нижняя предупредительная уставка, мм/с"
-                        android:layout_width="289dp"
-                        android:layout_height="wrap_content" android:id="@+id/textView16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView16"
+                        android:layout_weight="1"
                 />
                 <EditText
-                        android:layout_width="match_parent"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
-                        android:id="@+id/editText2"
-                        android:layout_weight="1"
-                        android:text="0"
+                        android:id="@+id/editText3"
+                        android:layout_weight=".3"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="@android:color/transparent"
                         android:textAlignment="textEnd" android:textSize="14sp"/>
             </LinearLayout>
@@ -196,16 +212,18 @@
                     android:layout_height="wrap_content">
                 <TextView
                         android:text="Виброскорость. Верхняя предупредительная уставка, мм/с"
-                        android:layout_width="289dp"
+                        android:layout_width="0dip"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content" android:id="@+id/textView18"/>
                 <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:id="@+id/editText6"
-                        android:layout_weight="1"
-                        android:text="0"
+                        android:layout_weight=".3"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="@android:color/transparent"
                         android:textAlignment="textEnd" android:textSize="14sp"/>
             </LinearLayout>
@@ -215,16 +233,17 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Виброскорость. Аварийная уставка, мм/с"
-                        android:layout_width="289dp"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView19" android:layout_weight="1"/>
                 <EditText
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:id="@+id/editText7"
-                        android:layout_weight="1"
-                        android:text="0"
+                        android:layout_weight=".3"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:background="@android:color/transparent"
                         android:textAlignment="textEnd" android:textSize="14sp"/>
             </LinearLayout>
@@ -236,19 +255,20 @@
                     android:layout_height="match_parent" android:layout_marginTop="10dp">
                 <TextView
                         android:text="Ось X. Нижняя предупредительная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView20"
                         android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
                         android:textAlignment="textEnd" android:textSize="14sp"
-                        android:id="@+id/editText8" android:layout_weight="1"/>
+                        android:id="@+id/editText8" android:layout_weight=".3"/>
             </LinearLayout>
             <LinearLayout
                     android:orientation="horizontal"
@@ -256,18 +276,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось X. Верхняя предупредительная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView21" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText9" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText9" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -276,18 +297,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось X. Аварийная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView22" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText10" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText10" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -297,18 +319,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось Y. Нижняя предупредительная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView23" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText11" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText11" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -317,18 +340,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось Y. Верхняя предупредительная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView24" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText12" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText12" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -337,18 +361,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось Y. Аварийная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView25" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText13" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText13" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -358,18 +383,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось Z. Нижняя предупредительная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView26" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText14" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText14" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -378,18 +404,19 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось Z. Верхняя предупредительная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView27" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText15" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText15" android:layout_weight=".3"/>
             </LinearLayout>
 
             <LinearLayout
@@ -398,29 +425,34 @@
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Ось Z. Аварийная уставка, град."
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content" android:id="@+id/textView28" android:layout_weight="1"/>
                 <EditText
-                        android:text="0"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:inputType="number"
                         android:ems="10"
                         android:background="@android:color/transparent"
                         android:textSize="14sp"
                         android:textAlignment="textEnd"
-                        android:id="@+id/editText16" android:layout_weight="1"/>
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:id="@+id/editText16" android:layout_weight=".3"/>
             </LinearLayout>
 
 
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" android:layout_weight="1" android:layout_marginTop="20dp">
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp">
                 <Button
                         android:text="Button"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" android:id="@+id/button1" android:layout_weight="1"/>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/button1"
+                        android:layout_weight="1"/>
             </LinearLayout>
 
         </LinearLayout>
