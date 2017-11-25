@@ -6,8 +6,10 @@ import android.net.wifi.WifiManager;
 import android.net.wifi.WifiInfo;
 import android.os.Handler;
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -37,6 +39,17 @@ import com.invertor.modbus.tcp.TcpParameters;
 import android.os.AsyncTask;
 import java.nio.ByteBuffer;
 
+import android.view.View.OnFocusChangeListener;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.ViewGroup.LayoutParams;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+
+
+
 
 
 public class MainActivity extends AppCompatActivity {
@@ -49,10 +62,21 @@ public class MainActivity extends AppCompatActivity {
     private TextView text4;
     private TextView text5;
     private TextView text6;
-    private EditText text7;
-    private EditText text8;
-    private EditText text9;
-    private EditText text10;
+    private TextView text7;
+    private TextView text8;
+    private TextView text9;
+    private TextView text10;
+    private TextView text11;
+    private TextView text12;
+    private TextView text13;
+    private TextView text14;
+    private TextView text15;
+    private TextView text16;
+    private TextView text17;
+    private TextView text18;
+    private TextView text19;
+    private TextView text20;
+    private TextView texttemper;
     private Switch mSwitch;
 
 
@@ -80,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
     int[] registerValues2;
 
     int flag_write = 0;
+    int input_number_register = 0;
+    int input_value = 0;
 
 
     @Override
@@ -87,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        enableButton = (Button)findViewById(R.id.button1);
-        mResultEditText = (TextView)findViewById(R.id.textView8);
+        enableButton = (Button) findViewById(R.id.button1);
+        mResultEditText = (TextView) findViewById(R.id.textView8);
 
         text1 = (TextView) findViewById(R.id.textView8);
         text2 = (TextView) findViewById(R.id.textView11);
@@ -98,17 +124,64 @@ public class MainActivity extends AppCompatActivity {
         text5 = (TextView) findViewById(R.id.textView_relay2);
         text6 = (TextView) findViewById(R.id.textView3_relay4);
 
-        text7 = (EditText) findViewById(R.id.editText);
-        text7.setBackgroundResource(R.drawable.corner);
+        texttemper = (TextView) findViewById(R.id.textView5);
 
-        text8 = (EditText) findViewById(R.id.editText2);
-        text8.setBackgroundResource(R.drawable.corner);
+        //text7 = (TextView) findViewById(R.id.editText);
+        //text7.setBackgroundResource(R.drawable.corner);
+        //text7.setOnFocusChangeListener((OnFocusChangeListener) this);
+        //text7.setOnLongClickListener((OnLongClickListener) this);
 
-        text9 = (EditText) findViewById(R.id.editText3);
-        text9.setBackgroundResource(R.drawable.corner);
+        text8 = (TextView) findViewById(R.id.editText2);
+        //text8.setBackgroundResource(R.drawable.corner);
+        //text8.setOnFocusChangeListener((OnFocusChangeListener) this);
 
-        text10 = (EditText) findViewById(R.id.editText6);
-        text10.setBackgroundResource(R.drawable.corner);
+        text9 = (TextView) findViewById(R.id.editText3);
+        //text9.setBackgroundResource(R.drawable.corner);
+        //text9.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text10 = (TextView) findViewById(R.id.editText6);
+        //text10.setBackgroundResource(R.drawable.corner);
+        //text10.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text11 = (TextView) findViewById(R.id.editText7);
+        //text11.setBackgroundResource(R.drawable.corner);
+        //text11.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text12 = (TextView) findViewById(R.id.editText8);
+        //text12.setBackgroundResource(R.drawable.corner);
+        //text12.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text13 = (TextView) findViewById(R.id.editText9);
+        //text13.setBackgroundResource(R.drawable.corner);
+        //text13.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text14 = (TextView) findViewById(R.id.editText10);
+        //text14.setBackgroundResource(R.drawable.corner);
+        //text14.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text15 = (TextView) findViewById(R.id.editText11);
+        //text15.setBackgroundResource(R.drawable.corner);
+        //text15.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text16 = (TextView) findViewById(R.id.editText12);
+        //text16.setBackgroundResource(R.drawable.corner);
+        //text16.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text17 = (TextView) findViewById(R.id.editText13);
+        //text17.setBackgroundResource(R.drawable.corner);
+        //text17.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text18 = (TextView) findViewById(R.id.editText14);
+       //text18.setBackgroundResource(R.drawable.corner);
+        //text18.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text19 = (TextView) findViewById(R.id.editText15);
+        //text19.setBackgroundResource(R.drawable.corner);
+        //text19.setOnFocusChangeListener((OnFocusChangeListener) this);
+
+        text20 = (TextView) findViewById(R.id.editText16);
+        //text20.setBackgroundResource(R.drawable.corner);
+        //text20.setOnFocusChangeListener((OnFocusChangeListener) this);
 
 
         mSwitch = (Switch) findViewById(R.id.switch3);
@@ -121,26 +194,9 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // в зависимости от значения isChecked выводим нужное сообщение
                 if (isChecked) {
-
-                    //Toast.makeText(getApplicationContext(), String.valueOf(isPortOpen("192.168.100.5", 300, 3000)), Toast.LENGTH_SHORT).show();
-                    //Toast.makeText(getApplicationContext(), "Опрос включен", Toast.LENGTH_SHORT).show();
-
-//                    Thread thread = new Thread() {
-//                        @Override
-//                        public void run() {
-//                            try {
-//                                receiveMyMessage();
-//                            } catch (Exception e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    };
-//
-//                    thread.start();
                     try {
                         new SocketTask().execute();
-                    }
-                    catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -152,19 +208,89 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        text9.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        enableButton.setOnClickListener(new OnClickListener(){
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброскорость. Нижняя предупредительная уставка, мм/с");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+                        flag_write = 1;
+                        input_number_register = 1;
+                        input_value = Integer.parseInt(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        enableButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
 //                WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
 //                WifiInfo info = wifi.getConnectionInfo();
 //                String ssid = info.getSSID();
 //                mResultEditText.setText(ssid);
-                  flag_write = 1;
+                flag_write = 1;
 
-                  enableButton.requestFocusFromTouch();
+                //enableButton.requestFocusFromTouch();
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Сохранить регистр");
+                builder.setMessage("Введите новое значение");
+                EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
     }
+
 
     public boolean isOnline() {
         ConnectivityManager cm =
@@ -178,10 +304,13 @@ public class MainActivity extends AppCompatActivity {
         Runtime runtime = Runtime.getRuntime();
         try {
             Process ipProcess = runtime.exec("/system/bin/ping -c 1 192.168.100.5");
-            int     exitValue = ipProcess.waitFor();
+            int exitValue = ipProcess.waitFor();
             return (exitValue == 0);
-        } catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -192,14 +321,10 @@ public class MainActivity extends AppCompatActivity {
             socket.connect(new InetSocketAddress(ip, port), timeout);
             socket.close();
             return true;
-        }
-
-        catch(ConnectException ce){
+        } catch (ConnectException ce) {
             ce.printStackTrace();
             return false;
-        }
-
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
             return false;
         }
@@ -217,9 +342,7 @@ public class MainActivity extends AppCompatActivity {
             bytes[1] = bytes1[3];
             bytes[2] = bytes2[2];
             bytes[3] = bytes2[3];
-        }
-        else
-        {
+        } else {
             bytes[0] = bytes1[2];
             bytes[1] = bytes1[3];
             bytes[2] = bytes2[2];
@@ -234,8 +357,10 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 1; i < scale; i++)
             pow *= 10;
         float tmp = number * pow;
-        return ( (float) ( (int) ((tmp - (int) tmp) >= 0.5f ? tmp + 1 : tmp) ) ) / pow;
+        return ((float) ((int) ((tmp - (int) tmp) >= 0.5f ? tmp + 1 : tmp))) / pow;
     }
+
+
 
 
     public class SocketTask extends AsyncTask<Void, Void, Void> {
@@ -264,23 +389,19 @@ public class MainActivity extends AppCompatActivity {
 
                 m.connect();
 
-                while(mSwitch.isChecked())
-                {
+                while (mSwitch.isChecked()) {
                     try {
 
-                        if (flag_write == 1)
-                        {
+                        if (flag_write == 1) {
                             try {
-                                m.writeSingleRegister(slaveId, 1086, 354);
+                                m.writeSingleRegister(slaveId, 1118, input_value);
                                 //m.writeSingleRegister(slaveId, 1108, 2749);
-                            }
-                            catch (ModbusIOException e) {
+                            } catch (ModbusIOException e) {
                                 e.printStackTrace();
                             }
 
                             flag_write = 0;
-                        }
-                        else {
+                        } else {
                             registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
                             Thread.sleep(50);
                             registerValues2 = m.readHoldingRegisters(slaveId, offset2, 60);
@@ -293,6 +414,9 @@ public class MainActivity extends AppCompatActivity {
                                     value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
                                     value = round(value, 2);
                                     text1.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[24], registerValues2[25], 0);
+                                    texttemper.setText(String.valueOf(value));
 
                                     value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
                                     text2.setText(String.valueOf(value));
@@ -307,14 +431,49 @@ public class MainActivity extends AppCompatActivity {
 
                                     text6.setText(String.valueOf(registerValues[83]));
 
-                                    text7.setText(String.valueOf(registerValues[86]));
+                                    text8.setText(String.valueOf(registerValues[86]));
+
+                                    value = swapIntToFloat(registerValues2[18], registerValues2[19], 0);
+                                    text9.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[20], registerValues2[21], 0);
+                                    text10.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[22], registerValues2[23], 0);
+                                    text11.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[30], registerValues2[31], 0);
+                                    text12.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[32], registerValues2[33], 0);
+                                    text13.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[34], registerValues2[35], 0);
+                                    text14.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[42], registerValues2[43], 0);
+                                    text15.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[44], registerValues2[45], 0);
+                                    text16.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[46], registerValues2[47], 0);
+                                    text17.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[54], registerValues2[55], 0);
+                                    text18.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[56], registerValues2[57], 0);
+                                    text19.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues2[58], registerValues2[59], 0);
+                                    text20.setText(String.valueOf(value));
                                 }
                             });
                         }
 
 
-                    }
-                    catch (ModbusIOException e) {
+                    } catch (ModbusIOException e) {
                         e.printStackTrace();
                         mHandler.post(new Runnable() {
                             @Override
@@ -325,6 +484,7 @@ public class MainActivity extends AppCompatActivity {
                                 text4.setText("-");
                                 text5.setText("-");
                                 text6.setText("-");
+                                texttemper.setText("-");
                             }
                         });
                     }
@@ -335,9 +495,7 @@ public class MainActivity extends AppCompatActivity {
 
                 m.disconnect();
 
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 e.printStackTrace();
                 mHandler.post(new Runnable() {
                     @Override
@@ -348,9 +506,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
                     }
                 });
-            }
-            finally
-            {
+            } finally {
                 try {
                     m.disconnect();
                 } catch (ModbusIOException e) {
@@ -366,14 +522,15 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
 
 
-            }
+        }
     }
-
-
-
-
-
 }
+
+
+
+
+
+
 
 
 
