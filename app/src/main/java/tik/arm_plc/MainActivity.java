@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     int flag_write = 0;
     int input_number_register = 0;
     int input_value = 0;
+    float float_input_value = (float) 0.0;
 
 
     @Override
@@ -225,9 +226,10 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //String value = input.getText().toString();
                         //Log.d(TAG, "User name: " + value);
+
                         flag_write = 1;
                         input_number_register = 1;
-                        input_value = Integer.parseInt(input.getText().toString());
+                        float_input_value = Float.parseFloat(input.getText().toString());
 
                         return;
                     }
@@ -240,7 +242,6 @@ public class MainActivity extends AppCompatActivity {
                         return;
                     }
                 });
-
 
                 AlertDialog alert = builder.create();
                 alert.show();
@@ -360,7 +361,21 @@ public class MainActivity extends AppCompatActivity {
         return ((float) ((int) ((tmp - (int) tmp) >= 0.5f ? tmp + 1 : tmp))) / pow;
     }
 
+    public static byte [] float2ByteArray (float value)
+    {
+        return ByteBuffer.allocate(4).putFloat(value).array();
+    }
 
+    public static int[] byteArrayToInt(byte[] b)
+    {
+        int[] int_array =
+                {
+                        (b[0] << 8) | (b[1] & 0xFF),
+                        (b[2] << 8) | (b[3] & 0xFF),
+                };
+
+        return int_array;
+    }
 
 
     public class SocketTask extends AsyncTask<Void, Void, Void> {
@@ -394,13 +409,21 @@ public class MainActivity extends AppCompatActivity {
 
                         if (flag_write == 1) {
                             try {
-                                m.writeSingleRegister(slaveId, 1118, input_value);
-                                //m.writeSingleRegister(slaveId, 1108, 2749);
+
+                                byte[] byte_array = float2ByteArray(float_input_value);
+                                int[] int_array = byteArrayToInt(byte_array);
+                                //m.writeSingleRegister(slaveId, 1118, input_value);
+                                if (input_number_register == 1)
+                                    m.writeMultipleRegisters(slaveId, 1118, int_array);
+
                             } catch (ModbusIOException e) {
                                 e.printStackTrace();
                             }
 
                             flag_write = 0;
+                            input_number_register = 0;
+                            input_value = 0;
+
                         } else {
                             registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
                             Thread.sleep(50);
