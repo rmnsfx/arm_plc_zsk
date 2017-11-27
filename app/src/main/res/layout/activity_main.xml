@@ -174,6 +174,7 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -193,14 +194,14 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
                         android:text="Виброскорость. Аварийная уставка, мм/с"
                         android:id="@+id/textView19"
-                        android:layout_width="0dip"
-                        android:layout_weight=".8"
+                        android:layout_width="250dp"
                         android:layout_height="match_parent"/>
                 <TextView
                         android:layout_width="0dip"
@@ -231,6 +232,7 @@
                         android:id="@+id/editText8" android:layout_weight=".3"/>
             </LinearLayout>
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -247,6 +249,7 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -280,6 +283,7 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -296,6 +300,7 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -329,6 +334,7 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -345,6 +351,7 @@
             </LinearLayout>
 
             <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -364,6 +371,63 @@
             </LinearLayout>
             <LinearLayout
                     android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Статус канала"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView29"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:id="@+id/textView30"
+                        android:text="-"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Режим работы реле"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView31"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:id="@+id/textView32"
+                        android:text="-"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Квитирование реле"
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:id="@+id/editText"
+                        android:text="-"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_marginTop="5dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -390,7 +454,7 @@
                     android:layout_weight="1"
                     android:layout_marginTop="20dp">
                 <Button
-                        android:text="Квитирование реле"
+                        android:text="Применить изменения"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/button1"

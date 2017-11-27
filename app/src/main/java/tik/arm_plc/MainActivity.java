@@ -76,6 +76,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView text18;
     private TextView text19;
     private TextView text20;
+    private TextView text21;
+    private TextView text22;
     private TextView texttemper;
     private Switch mSwitch;
 
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
 
         texttemper = (TextView) findViewById(R.id.textView5);
 
-        //text7 = (TextView) findViewById(R.id.editText);
+        text7 = (TextView) findViewById(R.id.editText);
         //text7.setBackgroundResource(R.drawable.corner);
         //text7.setOnFocusChangeListener((OnFocusChangeListener) this);
         //text7.setOnLongClickListener((OnLongClickListener) this);
@@ -184,6 +186,9 @@ public class MainActivity extends AppCompatActivity {
         //text20.setBackgroundResource(R.drawable.corner);
         //text20.setOnFocusChangeListener((OnFocusChangeListener) this);
 
+        text21 = (TextView) findViewById(R.id.textView30);
+
+        text22 = (TextView) findViewById(R.id.textView32);
 
         mSwitch = (Switch) findViewById(R.id.switch3);
         // устанавливаем переключатель программно в значение ON
@@ -208,6 +213,86 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        text7.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Квитирование реле");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 14;
+                        input_value = Integer.parseInt(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text8.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Задержка реле на срабатывание, мс");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 13;
+                        input_value = Integer.parseInt(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
 
         text9.setOnClickListener(new OnClickListener() {
             @Override
@@ -249,35 +334,33 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        enableButton.setOnClickListener(new OnClickListener() {
+        text10.setOnClickListener(new OnClickListener() {
+            @Override
             public void onClick(View v) {
-//                WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-//                WifiInfo info = wifi.getConnectionInfo();
-//                String ssid = info.getSSID();
-//                mResultEditText.setText(ssid);
-                flag_write = 1;
-
-                //enableButton.requestFocusFromTouch();
-
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Сохранить регистр");
+                builder.setTitle("Виброскорость. Верхняя предупредительная уставка, мм/с");
                 builder.setMessage("Введите новое значение");
-                EditText input = new EditText(MainActivity.this);
+                final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
                 builder.setView(input);
 
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //String value = input.getText().toString();
                         //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 2;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
                         return;
                     }
                 });
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -285,9 +368,510 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text11.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброскорость. Аварийная уставка, мм/с");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 3;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
 
                 AlertDialog alert = builder.create();
                 alert.show();
+
+            }
+        });
+
+        text12.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось X. Нижняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 4;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text13.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось X. Верхняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 5;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text14.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось X. Аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 6;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
+        text15.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Y. Нижняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 7;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text16.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Y. Верхняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 8;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text17.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Y. Аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 9;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text18.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Z. Нижняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 10;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text19.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Z. Верхняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 11;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text20.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Z. Аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 12;
+                        float_input_value = Float.parseFloat(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        text21.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Включить канал 485");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 16;
+                        input_value = Integer.parseInt(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+        text22.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Режим работы реле");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 17;
+                        input_value = Integer.parseInt(input.getText().toString());
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
+
+        enableButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+//                WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+//                WifiInfo info = wifi.getConnectionInfo();
+//                String ssid = info.getSSID();
+//                mResultEditText.setText(ssid);
+
+                flag_write = 1;
+                input_number_register = 15;
+                input_value = 0;
+
+
             }
         });
     }
@@ -416,6 +1000,62 @@ public class MainActivity extends AppCompatActivity {
                                 if (input_number_register == 1)
                                     m.writeMultipleRegisters(slaveId, 1118, int_array);
 
+                                else if (input_number_register == 2)
+                                    m.writeMultipleRegisters(slaveId, 1120, int_array);
+
+                                else if (input_number_register == 3)
+                                    m.writeMultipleRegisters(slaveId, 1122, int_array);
+
+                                else if (input_number_register == 4)
+                                    m.writeMultipleRegisters(slaveId, 1130, int_array);
+
+                                else if (input_number_register == 5)
+                                    m.writeMultipleRegisters(slaveId, 1132, int_array);
+
+                                else if (input_number_register == 6)
+                                    m.writeMultipleRegisters(slaveId, 1134, int_array);
+
+                                else if (input_number_register == 7)
+                                    m.writeMultipleRegisters(slaveId, 1142, int_array);
+
+                                else if (input_number_register == 8)
+                                    m.writeMultipleRegisters(slaveId, 1144, int_array);
+
+                                else if (input_number_register == 9)
+                                    m.writeMultipleRegisters(slaveId, 1146, int_array);
+
+                                else if (input_number_register == 10)
+                                    m.writeMultipleRegisters(slaveId, 1154, int_array);
+
+                                else if (input_number_register == 11)
+                                    m.writeMultipleRegisters(slaveId, 1156, int_array);
+
+                                else if (input_number_register == 12)
+                                    m.writeMultipleRegisters(slaveId, 1158, int_array);
+
+                                else if (input_number_register == 13)
+                                    m.writeSingleRegister(slaveId, 1086, input_value);
+
+                                else if (input_number_register == 14)
+                                    m.writeSingleRegister(slaveId, 1096, input_value);
+
+                                else if (input_number_register == 15) {
+                                    m.writeSingleRegister(slaveId, 1107, 43981);
+
+                                    mHandler.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Настройки применены", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+
+                                else if (input_number_register == 16)
+                                    m.writeSingleRegister(slaveId, 1072, input_value);
+
+                                else if (input_number_register == 17)
+                                    m.writeSingleRegister(slaveId, 1084, input_value);
+
                             } catch (ModbusIOException e) {
                                 e.printStackTrace();
                             }
@@ -454,6 +1094,8 @@ public class MainActivity extends AppCompatActivity {
 
                                     text6.setText(String.valueOf(registerValues[83]));
 
+                                    text7.setText(String.valueOf(registerValues[96]));
+
                                     text8.setText(String.valueOf(registerValues[86]));
 
                                     value = swapIntToFloat(registerValues2[18], registerValues2[19], 0);
@@ -491,6 +1133,10 @@ public class MainActivity extends AppCompatActivity {
 
                                     value = swapIntToFloat(registerValues2[58], registerValues2[59], 0);
                                     text20.setText(String.valueOf(value));
+
+                                    text21.setText(String.valueOf(registerValues[72]));
+
+                                    text22.setText(String.valueOf(registerValues[84]));
                                 }
                             });
                         }
@@ -526,7 +1172,7 @@ public class MainActivity extends AppCompatActivity {
 
                         mSwitch.toggle();
 
-                        Toast.makeText(getApplicationContext(), "Connection error", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Ошибка соединения", Toast.LENGTH_SHORT).show();
                     }
                 });
             } finally {
