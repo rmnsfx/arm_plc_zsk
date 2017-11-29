@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.widget.Button;
@@ -80,6 +81,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView text22;
     private TextView texttemper;
     private Switch mSwitch;
+    private ImageView image1;
+    private ImageView image2;
+    private ImageView image3;
 
 
     /* The important instances of the classes mentioned before */
@@ -191,8 +195,10 @@ public class MainActivity extends AppCompatActivity {
         text22 = (TextView) findViewById(R.id.textView32);
 
         mSwitch = (Switch) findViewById(R.id.switch3);
+
         // устанавливаем переключатель программно в значение ON
         mSwitch.setChecked(false);
+
         // добавляем слушателя
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -874,6 +880,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
 
@@ -1084,11 +1092,77 @@ public class MainActivity extends AppCompatActivity {
                                     value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
                                     text2.setText(String.valueOf(value));
 
+                                        if (Math.abs(value) >= 0 && Math.abs(value) < 20)
+                                        {
+                                            image1 = (ImageView) findViewById(R.id.imageView);
+                                            image1.setImageResource(R.drawable.a1_2);
+                                        }
+                                        else if (Math.abs(value) >= 20 && Math.abs(value) < 40)
+                                        {
+                                            image1 = (ImageView) findViewById(R.id.imageView);
+                                            image1.setImageResource(R.drawable.a1_3);
+                                        }
+                                        else if (Math.abs(value) >= 40 && Math.abs(value) < 60)
+                                        {
+                                            image1 = (ImageView) findViewById(R.id.imageView);
+                                            image1.setImageResource(R.drawable.a1_4);
+                                        }
+                                        else if (Math.abs(value) >= 60 )
+                                        {
+                                            image1 = (ImageView) findViewById(R.id.imageView);
+                                            image1.setImageResource(R.drawable.a1_5);
+                                        }
+
+
                                     value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
                                     text3.setText(String.valueOf(value));
 
+                                        if (Math.abs(value) >= 0 && Math.abs(value) < 20)
+                                        {
+                                            image2 = (ImageView) findViewById(R.id.imageView2);
+                                            image2.setImageResource(R.drawable.a2_2);
+                                        }
+                                        else if (Math.abs(value) >= 20 && Math.abs(value) < 40)
+                                        {
+                                            image2 = (ImageView) findViewById(R.id.imageView2);
+                                            image2.setImageResource(R.drawable.a2_3);
+                                        }
+                                        else if (Math.abs(value) >= 40 && Math.abs(value) < 60)
+                                        {
+                                            image2 = (ImageView) findViewById(R.id.imageView2);
+                                            image2.setImageResource(R.drawable.a2_4);
+                                        }
+                                        else if (Math.abs(value) >= 60)
+                                        {
+                                            image2 = (ImageView) findViewById(R.id.imageView2);
+                                            image2.setImageResource(R.drawable.a2_5);
+                                        }
+
+
                                     value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
                                     text4.setText(String.valueOf(value));
+
+                                        if (Math.abs(value) >= 0 && Math.abs(value) < 20)
+                                        {
+                                            image3 = (ImageView) findViewById(R.id.imageView3);
+                                            image3.setImageResource(R.drawable.a3_2);
+                                        }
+                                        else if (Math.abs(value) >= 20 && Math.abs(value) < 40)
+                                        {
+                                            image3 = (ImageView) findViewById(R.id.imageView3);
+                                            image3.setImageResource(R.drawable.a3_3);
+                                        }
+                                        else if (Math.abs(value) >= 40 && Math.abs(value) < 60)
+                                        {
+                                            image3 = (ImageView) findViewById(R.id.imageView3);
+                                            image3.setImageResource(R.drawable.a3_4);
+                                        }
+                                        else if (Math.abs(value) >= 60)
+                                        {
+                                            image3 = (ImageView) findViewById(R.id.imageView3);
+                                            image3.setImageResource(R.drawable.a3_5);
+                                        }
+
 
                                     text5.setText(String.valueOf(registerValues[82]));
 
