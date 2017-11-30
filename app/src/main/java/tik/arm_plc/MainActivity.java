@@ -1,5 +1,6 @@
 package tik.arm_plc;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.net.wifi.WifiManager;
@@ -84,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView image1;
     private ImageView image2;
     private ImageView image3;
-
+    private TextView text5_0;
+    private TextView text6_0;
 
     /* The important instances of the classes mentioned before */
 //    public TCPMasterConnection con; //the connection
@@ -128,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
         text3 = (TextView) findViewById(R.id.textView13);
         text4 = (TextView) findViewById(R.id.textView15);
 
+        text5_0 = (TextView) findViewById(R.id.textView_relay1);
+        text6_0 = (TextView) findViewById(R.id.textView2_relay3);
         text5 = (TextView) findViewById(R.id.textView_relay2);
         text6 = (TextView) findViewById(R.id.textView3_relay4);
 
@@ -881,6 +885,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        image1 = (ImageView) findViewById(R.id.imageView);
+        image2 = (ImageView) findViewById(R.id.imageView2);
+        image3 = (ImageView) findViewById(R.id.imageView3);
+
+        image1.setImageResource(R.drawable.a0_1);
+        image2.setImageResource(R.drawable.a0_2);
+        image3.setImageResource(R.drawable.a0_3);
+
 
     }
 
@@ -1090,7 +1102,7 @@ public class MainActivity extends AppCompatActivity {
                                     texttemper.setText(String.valueOf(value));
 
                                     value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
-                                    text2.setText(String.valueOf(value));
+                                    text2.setText(String.valueOf(value  + "°"));
 
                                         if (Math.abs(value) >= 0 && Math.abs(value) < 20)
                                         {
@@ -1115,7 +1127,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
-                                    text3.setText(String.valueOf(value));
+                                    text3.setText(String.valueOf(value  + "°"));
 
                                         if (Math.abs(value) >= 0 && Math.abs(value) < 20)
                                         {
@@ -1140,7 +1152,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
-                                    text4.setText(String.valueOf(value));
+                                    text4.setText(String.valueOf(value  + "°"));
 
                                         if (Math.abs(value) >= 0 && Math.abs(value) < 20)
                                         {
@@ -1165,8 +1177,28 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     text5.setText(String.valueOf(registerValues[82]));
+                                    if (registerValues[82] == 1)
+                                    {
+                                        text5_0.setTextColor(Color.RED);
+                                        text5.setTextColor(Color.RED);
+                                    }
+                                    else
+                                    {
+                                        text5_0.setTextColor(Color.GRAY);
+                                        text5.setTextColor(Color.GRAY);
+                                    }
 
                                     text6.setText(String.valueOf(registerValues[83]));
+                                    if (registerValues[83] == 1)
+                                    {
+                                        text6_0.setTextColor(Color.RED);
+                                        text6.setTextColor(Color.RED);
+                                    }
+                                    else
+                                    {
+                                        text6_0.setTextColor(Color.GRAY);
+                                        text6.setTextColor(Color.GRAY);
+                                    }
 
                                     text7.setText(String.valueOf(registerValues[96]));
 
