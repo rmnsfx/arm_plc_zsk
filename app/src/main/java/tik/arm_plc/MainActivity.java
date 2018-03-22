@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     int[] registerValues;
     int[] registerValues2;
+    int[] registerValues3;
 
     int flag_write = 0;
     int input_number_register = 0;
@@ -227,8 +228,23 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 118;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 205;
+
+                        try
+                        {
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -269,8 +285,22 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 120;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 207;
+                        try
+                        {
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -309,8 +339,22 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 132;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 157;
+                        try
+                        {
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -351,8 +395,25 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 136;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 159;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
 
                         return;
                     }
@@ -393,8 +454,24 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 144;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 173;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -435,8 +512,24 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 148;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 175;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -477,8 +570,24 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 156;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 189;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -517,8 +626,24 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 160;
-                        float_input_value = Float.parseFloat(input.getText().toString());
+                        input_number_register = 191;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -561,7 +686,22 @@ public class MainActivity extends AppCompatActivity {
 
                         flag_write = 1;
                         input_number_register = 84;
-                        input_value = Integer.parseInt(input.getText().toString());
+
+                        try
+                        {
+                            input_value = Integer.parseInt(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -602,7 +742,22 @@ public class MainActivity extends AppCompatActivity {
 
                         flag_write = 1;
                         input_number_register = 96;
-                        input_value = Integer.parseInt(input.getText().toString());
+
+                        try
+                        {
+                            input_value = Integer.parseInt(input.getText().toString());
+
+                        } catch (Exception e)
+                            {
+
+                                mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        e.printStackTrace();
+                    }
 
                         return;
                     }
@@ -642,7 +797,23 @@ public class MainActivity extends AppCompatActivity {
 
                         flag_write = 1;
                         input_number_register = 86;
-                        input_value = Integer.parseInt(input.getText().toString());
+
+                        try
+                        {
+
+                            input_value = Integer.parseInt(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
 
                         return;
                     }
@@ -780,6 +951,8 @@ public class MainActivity extends AppCompatActivity {
     public class SocketTask extends AsyncTask<Void, Void, Void> {
 
         float value = 0;
+        int value_int = 0;
+        int val_set = 0;
 
         protected Void doInBackground(Void... params) {
 
@@ -818,30 +991,31 @@ public class MainActivity extends AppCompatActivity {
 
                                 byte[] byte_array = float2ByteArray(float_input_value);
                                 int[] int_array = byteArrayToInt(byte_array);
-                                //m.writeSingleRegister(slaveId, 1118, input_value);
-                                if (input_number_register == 118)
-                                    m.writeMultipleRegisters(slaveId, 1118, int_array);
 
-                                else if (input_number_register == 120)
-                                    m.writeMultipleRegisters(slaveId, 1120, int_array);
-
-                                else if (input_number_register == 132)
-                                    m.writeMultipleRegisters(slaveId, 1132, int_array);
-
-                                else if (input_number_register == 136)
-                                    m.writeMultipleRegisters(slaveId, 1136, int_array);
-
-                                else if (input_number_register == 144)
-                                    m.writeMultipleRegisters(slaveId, 1144, int_array);
-
-                                else if (input_number_register == 148)
-                                    m.writeMultipleRegisters(slaveId, 1148, int_array);
-
-                                else if (input_number_register == 156)
+                                if (input_number_register == 157)
                                     m.writeMultipleRegisters(slaveId, 1156, int_array);
 
-                                else if (input_number_register == 160)
-                                    m.writeMultipleRegisters(slaveId, 1160, int_array);
+                                else if (input_number_register == 159)
+                                    m.writeMultipleRegisters(slaveId, 1158, int_array);
+
+                                else if (input_number_register == 173)
+                                    m.writeMultipleRegisters(slaveId, 1172, int_array);
+
+                                else if (input_number_register == 175)
+                                    m.writeMultipleRegisters(slaveId, 1174, int_array);
+
+                                else if (input_number_register == 189)
+                                    m.writeMultipleRegisters(slaveId, 1188, int_array);
+
+                                else if (input_number_register == 191)
+                                    m.writeMultipleRegisters(slaveId, 1190, int_array);
+
+                                else if (input_number_register == 205)
+                                    m.writeMultipleRegisters(slaveId, 1204, int_array);
+
+                                else if (input_number_register == 207)
+                                    m.writeMultipleRegisters(slaveId, 1206, int_array);
+
 
                                 else if (input_number_register == 84)
                                     m.writeSingleRegister(slaveId, 1084, input_value);
@@ -852,8 +1026,9 @@ public class MainActivity extends AppCompatActivity {
                                 else if (input_number_register == 86)
                                     m.writeSingleRegister(slaveId, 1086, input_value);
 
-                                else if (input_number_register == 107) {
-                                    m.writeSingleRegister(slaveId, 1107, 43981);
+                                else if (input_number_register == 107)
+                                {
+                                    m.writeSingleRegister(slaveId, 1107, 0xABCD);
 
 
                                     mHandler.post(new Runnable() {
@@ -875,76 +1050,118 @@ public class MainActivity extends AppCompatActivity {
                             input_value = 0;
 
                         } else {
-                            registerValues = m.readHoldingRegisters(slaveId, offset, quantity);
+                            registerValues = m.readHoldingRegisters(slaveId, 1000, 100);
                             Thread.sleep(50);
-                            registerValues2 = m.readHoldingRegisters(slaveId, offset2, 62);
-
+                            registerValues2 = m.readHoldingRegisters(slaveId, 1100, 100);
+                            Thread.sleep(50);
+                            registerValues3 = m.readHoldingRegisters(slaveId, 1200, 50);
 
                             mHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
 
-                                    value = swapIntToFloat(registerValues2[16], registerValues2[17], 0);
+                                    //Виброскорость по оси Y
+                                    value = swapIntToFloat(registerValues3[2], registerValues3[3], 0);
                                     value = round(value, 2);
                                     text1.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[28], registerValues2[29], 1);
-                                    text2.setText(String.valueOf(value  + "°"));
-                                    value = Math.abs(value);
+                                    //ось X
+                                    //value = swapIntToFloat(registerValues2[54], registerValues2[55], 0);
+
+                                    value_int =  registerValues2[54];
+                                    if ( value_int >> 14 != 0 )
+                                        value_int = value_int | ~((1 << 15) - 1);
+
+                                    text2.setText(String.valueOf(value_int + "°"));
+                                    val_set = Math.abs(value_int);
 
 
-                                        if (value >= 0 && value < x_1)
+                                        if (value_int < -(x_1/2))
+                                        {
+                                            image1.setImageResource(R.drawable.a2_2);
+                                        }
+                                        if (value_int > -(x_1/2) && value_int < (x_1/2))
                                         {
                                             image1.setImageResource(R.drawable.a2_3);
                                         }
-                                        else if (value >= x_1 && value < x_2)
+                                        if (value_int > (x_1/2) && value_int < (x_1))
                                         {
                                             image1.setImageResource(R.drawable.a2_4);
                                         }
-                                        else if (value >= x_2)
+                                        if (val_set >= x_1 && val_set < x_2)
+                                        {
+                                            image1.setImageResource(R.drawable.a2_6);
+                                        }
+                                        if (val_set >= x_2)
                                         {
                                             image1.setImageResource(R.drawable.a2_5);
                                         }
 
+                                    //ось Y
+                                    //value = swapIntToFloat(registerValues2[70], registerValues2[71], 0);
+                                    value_int =  registerValues2[70];
 
-                                    value = swapIntToFloat(registerValues2[40], registerValues2[41], 1);
-                                    text3.setText(String.valueOf(value  + "°"));
-                                    value = Math.abs(value);
+                                    if ( value_int >> 14 != 0 )
+                                        value_int = value_int | ~((1 << 15) - 1);
+
+                                    text3.setText(String.valueOf(value_int  + "°"));
+                                    val_set = Math.abs(value_int);
 
 
-                                        if (value >= 0 && value < y_1)
+                                        if (value_int < -(y_1/2))
+                                        {
+                                            image2.setImageResource(R.drawable.a3_2);
+                                        }
+                                        if (value_int > -(y_1/2) && value_int < (y_1/2))
                                         {
                                             image2.setImageResource(R.drawable.a3_3);
                                         }
-                                        else if (value >= y_1 && value < y_2)
+                                        if (value_int > (y_1/2) && value_int < y_1)
                                         {
                                             image2.setImageResource(R.drawable.a3_4);
                                         }
-                                        else if (value >= y_2)
+                                        if (val_set > y_1 && val_set < y_2)
                                         {
-                                            image2.setImageResource(R.drawable.a3_4);
+                                            image2.setImageResource(R.drawable.a3_6);
+                                        }
+                                        if (val_set >= y_2)
+                                        {
+                                            image2.setImageResource(R.drawable.a3_5);
                                         }
 
+                                    //ось Z
+                                    //value = swapIntToFloat(registerValues2[86], registerValues2[87], 0);
+                                    value_int =  registerValues2[86];
 
-                                    value = swapIntToFloat(registerValues2[52], registerValues2[53], 1);
-                                    text4.setText(String.valueOf(value  + "°"));
-                                    value = Math.abs(value);
+                                    if ( value_int >> 14 != 0 )
+                                        value_int = value_int | ~((1 << 15) - 1);
+
+                                    text4.setText(String.valueOf(value_int  + "°"));
+                                    val_set = Math.abs(value_int);
 
 
-                                        if (value >= 0 && value < z_1)
+                                        if (value_int < -(z_1/2))
+                                        {
+                                            image3.setImageResource(R.drawable.a1_2);
+                                        }
+                                        if (value_int > -(z_1/2) && value_int < (z_1/2) )
                                         {
                                             image3.setImageResource(R.drawable.a1_3);
                                         }
-                                        else if (value >= z_1 && value < z_2)
+                                        if (value_int > (z_1/2) && value_int < (z_1) )
                                         {
                                             image3.setImageResource(R.drawable.a1_4);
                                         }
-                                        else if (value >= z_2)
+                                        if (val_set >= z_1 && val_set < z_2)
+                                        {
+                                            image3.setImageResource(R.drawable.a1_6);
+                                        }
+                                        if (val_set >= z_2)
                                         {
                                             image3.setImageResource(R.drawable.a1_5);
                                         }
 
-
+                                    //Предупредительное реле
                                     text5.setText(String.valueOf(registerValues[82]));
                                     if (registerValues[82] == 1)
                                     {
@@ -957,6 +1174,7 @@ public class MainActivity extends AppCompatActivity {
                                         text5.setTextColor(Color.GRAY);
                                     }
 
+                                    //Аварийное реле
                                     text6.setText(String.valueOf(registerValues[83]));
                                     if (registerValues[83] == 1)
                                     {
@@ -969,45 +1187,47 @@ public class MainActivity extends AppCompatActivity {
                                         text6.setTextColor(Color.GRAY);
                                     }
 
-                                    value = swapIntToFloat(registerValues2[24], registerValues2[25], 0);
-                                    texttemper.setText(String.valueOf(value));
+                                    //Реле
+                                    //value = swapIntToFloat(registerValues3[18], registerValues3[19], 0);
+                                    value_int = registerValues3[18];
+                                    texttemper.setText(String.valueOf(value_int));
 
 
                                     //Уставки
-
-
-
-
-                                    value = swapIntToFloat(registerValues2[18], registerValues2[19], 0);
+                                    //Виброскорость
+                                    value = swapIntToFloat(registerValues3[4], registerValues3[5], 0);
                                     vibr_1 = value;
                                     setText2.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[20], registerValues2[21], 0);
+                                    value = swapIntToFloat(registerValues3[6], registerValues3[7], 0);
                                     vibr_2 = value;
                                     setText4.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[32], registerValues2[33], 0);
+                                    //ось X
+                                    value = swapIntToFloat(registerValues2[56], registerValues2[57], 0);
                                     x_1 = value;
                                     setText6.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[36], registerValues2[37], 0);
+                                    value = swapIntToFloat(registerValues2[58], registerValues2[59], 0);
                                     x_2 = value;
                                     setText8.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[44], registerValues2[45], 0);
+                                    //ось Y
+                                    value = swapIntToFloat(registerValues2[72], registerValues2[73], 0);
                                     y_1 = value;
                                     setText10.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[48], registerValues2[49], 0);
-                                    y_1 = value;
+                                    value = swapIntToFloat(registerValues2[74], registerValues2[75], 0);
+                                    y_2 = value;
                                     setText12.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[56], registerValues2[57], 0);
+                                    //ось Z
+                                    value = swapIntToFloat(registerValues2[88], registerValues2[89], 0);
                                     z_1 = value;
                                     setText14.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[60], registerValues2[61], 0);
-                                    z_1 = value;
+                                    value = swapIntToFloat(registerValues2[90], registerValues2[91], 0);
+                                    z_2 = value;
                                     setText16.setText(String.valueOf(value));
 
                                     setText18.setText(String.valueOf(registerValues[84]));
