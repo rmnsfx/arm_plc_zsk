@@ -440,7 +440,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось Y. Нижняя предупредительная уставка, град.");
+                builder.setTitle("Ось Y. Предупредительная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -556,7 +556,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось Z. Верхняя предупредительная уставка, град.");
+                builder.setTitle("Ось Z. Предупредительная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -855,9 +855,9 @@ public class MainActivity extends AppCompatActivity {
         image2 = (ImageView) findViewById(R.id.imageView2);
         image3 = (ImageView) findViewById(R.id.imageView3);
 
-        image1.setImageResource(R.drawable.a0_3);
-        image2.setImageResource(R.drawable.a0_2);
-        image3.setImageResource(R.drawable.a0_1);
+        image1.setImageResource(R.drawable.i0_3);
+        image2.setImageResource(R.drawable.i0_2);
+        image3.setImageResource(R.drawable.i0_1);
 
 
     }
@@ -1060,7 +1060,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
 
-                                    //Виброскорость по оси Y
+                                    //Виброскорость по оси X
                                     value = swapIntToFloat(registerValues3[2], registerValues3[3], 0);
                                     value = round(value, 2);
                                     text1.setText(String.valueOf(value));
@@ -1073,28 +1073,37 @@ public class MainActivity extends AppCompatActivity {
                                         value_int = value_int | ~((1 << 15) - 1);
 
                                     text2.setText(String.valueOf(value_int + "°"));
-                                    val_set = Math.abs(value_int);
+                                    //val_set = Math.abs(value_int);
 
-
-                                        if (value_int < -(x_1/2))
+                                        if (value_int <= -x_2)
                                         {
-                                            image1.setImageResource(R.drawable.a2_2);
+                                            image1.setImageResource(R.drawable.i3_b);
+                                        }
+                                        if (value_int <= -x_1 && value_int > -x_2)
+                                        {
+                                            image1.setImageResource(R.drawable.i3_aa);
+                                        }
+
+                                        if (value_int < -(x_1/2) && value_int > -(x_1))
+                                        {
+                                            image1.setImageResource(R.drawable.i3_1);
                                         }
                                         if (value_int > -(x_1/2) && value_int < (x_1/2))
                                         {
-                                            image1.setImageResource(R.drawable.a2_3);
+                                            image1.setImageResource(R.drawable.i3_2);
                                         }
                                         if (value_int > (x_1/2) && value_int < (x_1))
                                         {
-                                            image1.setImageResource(R.drawable.a2_4);
+                                            image1.setImageResource(R.drawable.i3_3);
                                         }
-                                        if (val_set >= x_1 && val_set < x_2)
+
+                                        if (value_int >= x_1 && value_int < x_2)
                                         {
-                                            image1.setImageResource(R.drawable.a2_6);
+                                            image1.setImageResource(R.drawable.i3_aa);
                                         }
-                                        if (val_set >= x_2)
+                                        if (value_int >= x_2)
                                         {
-                                            image1.setImageResource(R.drawable.a2_5);
+                                            image1.setImageResource(R.drawable.i3_a);
                                         }
 
                                     //ось Y
@@ -1108,26 +1117,36 @@ public class MainActivity extends AppCompatActivity {
                                     val_set = Math.abs(value_int);
 
 
-                                        if (value_int < -(y_1/2))
-                                        {
-                                            image2.setImageResource(R.drawable.a3_2);
-                                        }
-                                        if (value_int > -(y_1/2) && value_int < (y_1/2))
-                                        {
-                                            image2.setImageResource(R.drawable.a3_3);
-                                        }
-                                        if (value_int > (y_1/2) && value_int < y_1)
-                                        {
-                                            image2.setImageResource(R.drawable.a3_4);
-                                        }
-                                        if (val_set > y_1 && val_set < y_2)
-                                        {
-                                            image2.setImageResource(R.drawable.a3_6);
-                                        }
-                                        if (val_set >= y_2)
-                                        {
-                                            image2.setImageResource(R.drawable.a3_5);
-                                        }
+                                    if (value_int <= -y_2)
+                                    {
+                                        image2.setImageResource(R.drawable.i2_b);
+                                    }
+                                    if (value_int <= -y_1 && value_int > -y_2)
+                                    {
+                                        image2.setImageResource(R.drawable.i2_bb);
+                                    }
+
+                                    if (value_int < -(y_1/2) && value_int > -(y_1))
+                                    {
+                                        image2.setImageResource(R.drawable.i2_1);
+                                    }
+                                    if (value_int > -(y_1/2) && value_int < (y_1/2))
+                                    {
+                                        image2.setImageResource(R.drawable.i2_2);
+                                    }
+                                    if (value_int > (y_1/2) && value_int < (y_1))
+                                    {
+                                        image2.setImageResource(R.drawable.i2_3);
+                                    }
+
+                                    if (value_int >= y_1 && value_int < y_2)
+                                    {
+                                        image2.setImageResource(R.drawable.i2_aa);
+                                    }
+                                    if (value_int >= y_2)
+                                    {
+                                        image2.setImageResource(R.drawable.i2_a);
+                                    }
 
                                     //ось Z
                                     //value = swapIntToFloat(registerValues2[86], registerValues2[87], 0);
@@ -1140,26 +1159,50 @@ public class MainActivity extends AppCompatActivity {
                                     val_set = Math.abs(value_int);
 
 
-                                        if (value_int < -(z_1/2))
-                                        {
-                                            image3.setImageResource(R.drawable.a1_2);
-                                        }
-                                        if (value_int > -(z_1/2) && value_int < (z_1/2) )
-                                        {
-                                            image3.setImageResource(R.drawable.a1_3);
-                                        }
-                                        if (value_int > (z_1/2) && value_int < (z_1) )
-                                        {
-                                            image3.setImageResource(R.drawable.a1_4);
-                                        }
-                                        if (val_set >= z_1 && val_set < z_2)
-                                        {
-                                            image3.setImageResource(R.drawable.a1_6);
-                                        }
-                                        if (val_set >= z_2)
-                                        {
-                                            image3.setImageResource(R.drawable.a1_5);
-                                        }
+                                    if (value_int <= -z_2)
+                                    {
+                                        image3.setImageResource(R.drawable.i1_a);
+                                    }
+                                    if (value_int <= -z_1 && value_int > -z_2)
+                                    {
+                                        image3.setImageResource(R.drawable.i1_aa);
+                                    }
+
+                                    if (value_int <= -(z_1/1.5) && value_int > -(z_1))
+                                    {
+                                        image3.setImageResource(R.drawable.i1_7);
+                                    }
+                                    if (value_int <= -(z_1/3) && value_int > -(z_1/1.5))
+                                    {
+                                        image3.setImageResource(R.drawable.i1_8);
+                                    }
+
+                                    if (value_int > -(z_1/3) && value_int < (z_1/3)) //центр
+                                    {
+                                        image3.setImageResource(R.drawable.i1_1);
+                                    }
+
+                                    if (value_int >= (z_1/3) && value_int < (z_1/2))
+                                    {
+                                        image3.setImageResource(R.drawable.i1_2);
+                                    }
+                                    if (value_int >= (z_1/2) && value_int < (z_1/1.3))
+                                    {
+                                        image3.setImageResource(R.drawable.i1_4);
+                                    }
+                                    if (value_int >= (z_1/1.3) && value_int < (z_1))
+                                    {
+                                        image3.setImageResource(R.drawable.i1_3);
+                                    }
+
+                                    if (value_int >= z_1 && value_int < z_2)
+                                    {
+                                        image3.setImageResource(R.drawable.i1_bb);
+                                    }
+                                    if (value_int >= z_2)
+                                    {
+                                        image3.setImageResource(R.drawable.i1_b);
+                                    }
 
                                     //Предупредительное реле
                                     text5.setText(String.valueOf(registerValues[82]));
