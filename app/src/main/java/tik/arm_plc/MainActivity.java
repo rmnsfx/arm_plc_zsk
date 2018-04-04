@@ -89,6 +89,22 @@ public class MainActivity extends AppCompatActivity {
     private TextView setText21;
     private TextView setText22;
 
+    private TextView setText23;
+    private TextView setText24;
+    private TextView setText25;
+    private TextView setText26;
+
+    private TextView setText27;
+    private TextView setText28;
+    private TextView setText29;
+    private TextView setText30;
+
+    private TextView setText31;
+    private TextView setText32;
+    private TextView setText33;
+    private TextView setText34;
+
+
     private Switch mSwitch;
     private ImageView image1;
     private ImageView image2;
@@ -136,6 +152,15 @@ public class MainActivity extends AppCompatActivity {
     float z_1 = 0;
     float z_2 = 0;
 
+    float vibr_1_low = 0;
+    float vibr_2_low = 0;
+    float x_1_low = 0;
+    float x_2_low = 0;
+    float y_1_low = 0;
+    float y_2_low = 0;
+    float z_1_low = 0;
+    float z_2_low = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +204,20 @@ public class MainActivity extends AppCompatActivity {
         setText21= (TextView) findViewById(R.id.setText21);
         setText22= (TextView) findViewById(R.id.setText22);
 
+        setText23= (TextView) findViewById(R.id.setText23);
+        setText24= (TextView) findViewById(R.id.setText24);
+        setText25= (TextView) findViewById(R.id.setText25);
+        setText26= (TextView) findViewById(R.id.setText26);
+
+        setText27= (TextView) findViewById(R.id.setText27);
+        setText28= (TextView) findViewById(R.id.setText28);
+        setText29= (TextView) findViewById(R.id.setText29);
+        setText30= (TextView) findViewById(R.id.setText30);
+
+        setText31= (TextView) findViewById(R.id.setText31);
+        setText32= (TextView) findViewById(R.id.setText32);
+        setText33= (TextView) findViewById(R.id.setText33);
+        setText34= (TextView) findViewById(R.id.setText34);
 
 
         mSwitch = (Switch) findViewById(R.id.switch3);
@@ -228,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 205;
+                        input_number_register = 221;
 
                         try
                         {
@@ -285,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 207;
+                        input_number_register = 223;
                         try
                         {
                             float_input_value = Float.parseFloat(input.getText().toString());
@@ -320,12 +359,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setText5.setOnClickListener(new OnClickListener() {
+
+
+        setText23.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось X. Предупредительная уставка, град.");
+                builder.setTitle("Ось X. Нижняя предупредительная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -375,13 +416,69 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-        setText7.setOnClickListener(new OnClickListener() {
+        setText5.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось X. Аварийная уставка, град.");
+                builder.setTitle("Ось X. Верхняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 161;
+                        try
+                        {
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
+
+        setText25.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось X. Нижняя аварийная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -435,12 +532,12 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        setText9.setOnClickListener(new OnClickListener() {
+        setText7.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось Y. Предупредительная уставка, град.");
+                builder.setTitle("Ось X. Верхняя аварийная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -454,7 +551,66 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 173;
+                        input_number_register = 163;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
+        setText27.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Y. Нижняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 177;
 
                         try
                         {
@@ -491,6 +647,121 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+        setText9.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Y. Верхняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 181;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+        setText29.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Y. Нижняя аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 179;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
 
 
         setText11.setOnClickListener(new OnClickListener() {
@@ -498,7 +769,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось Y. Аварийная уставка, град.");
+                builder.setTitle("Ось Y. Верхняя аварийная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -512,7 +783,7 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 175;
+                        input_number_register = 183;
 
                         try
                         {
@@ -549,14 +820,68 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        setText31.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Z. Нижняя предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 197;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
 
         setText13.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось Z. Предупредительная уставка, град.");
+                builder.setTitle("Ось Z. Верхняя предупредительная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -570,7 +895,7 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 189;
+                        input_number_register = 201;
 
                         try
                         {
@@ -607,12 +932,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setText15.setOnClickListener(new OnClickListener() {
+
+
+        setText33.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Ось Z. Аварийная уставка, град.");
+                builder.setTitle("Ось Z. Нижняя аварийная уставка, град.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -626,7 +953,65 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d(TAG, "User name: " + value);
 
                         flag_write = 1;
-                        input_number_register = 191;
+                        input_number_register = 199;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+
+
+        setText15.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Ось Z. Верхняя аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 203;
 
                         try
                         {
@@ -782,7 +1167,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Задержка реле на срабатывание, мс");
+                builder.setTitle("Задержка реле на срабатывание, сек.");
                 builder.setMessage("Введите новое значение");
                 final EditText input = new EditText(MainActivity.this);
                 //input.setId(TEXT_ID);
@@ -998,23 +1383,47 @@ public class MainActivity extends AppCompatActivity {
                                 else if (input_number_register == 159)
                                     m.writeMultipleRegisters(slaveId, 1158, int_array);
 
-                                else if (input_number_register == 173)
-                                    m.writeMultipleRegisters(slaveId, 1172, int_array);
+                                else if (input_number_register == 161)
+                                    m.writeMultipleRegisters(slaveId, 1160, int_array);
 
-                                else if (input_number_register == 175)
-                                    m.writeMultipleRegisters(slaveId, 1174, int_array);
+                                else if (input_number_register == 163)
+                                    m.writeMultipleRegisters(slaveId, 1162, int_array);
 
-                                else if (input_number_register == 189)
-                                    m.writeMultipleRegisters(slaveId, 1188, int_array);
+                                else if (input_number_register == 177)
+                                    m.writeMultipleRegisters(slaveId, 1176, int_array);
 
-                                else if (input_number_register == 191)
-                                    m.writeMultipleRegisters(slaveId, 1190, int_array);
+                                else if (input_number_register == 179)
+                                    m.writeMultipleRegisters(slaveId, 1178, int_array);
 
-                                else if (input_number_register == 205)
-                                    m.writeMultipleRegisters(slaveId, 1204, int_array);
+                                else if (input_number_register == 181)
+                                    m.writeMultipleRegisters(slaveId, 1180, int_array);
 
-                                else if (input_number_register == 207)
-                                    m.writeMultipleRegisters(slaveId, 1206, int_array);
+                                else if (input_number_register == 183)
+                                    m.writeMultipleRegisters(slaveId, 1182, int_array);
+
+                                else if (input_number_register == 197)
+                                    m.writeMultipleRegisters(slaveId, 1196, int_array);
+
+                                else if (input_number_register == 199)
+                                    m.writeMultipleRegisters(slaveId, 1198, int_array);
+
+                                else if (input_number_register == 201)
+                                    m.writeMultipleRegisters(slaveId, 1200, int_array);
+
+                                else if (input_number_register == 203)
+                                    m.writeMultipleRegisters(slaveId, 1202, int_array);
+
+                                else if (input_number_register == 217)
+                                    m.writeMultipleRegisters(slaveId, 1216, int_array);
+
+                                else if (input_number_register == 219)
+                                    m.writeMultipleRegisters(slaveId, 1218, int_array);
+
+                                else if (input_number_register == 221)
+                                    m.writeMultipleRegisters(slaveId, 1220, int_array);
+
+                                else if (input_number_register == 223)
+                                    m.writeMultipleRegisters(slaveId, 1222, int_array);
 
 
                                 else if (input_number_register == 84)
@@ -1061,7 +1470,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void run() {
 
                                     //Виброскорость по оси X
-                                    value = swapIntToFloat(registerValues3[2], registerValues3[3], 0);
+                                    value = swapIntToFloat(registerValues3[14], registerValues3[15], 0);
                                     value = round(value, 2);
                                     text1.setText(String.valueOf(value));
 
@@ -1075,20 +1484,20 @@ public class MainActivity extends AppCompatActivity {
                                     text2.setText(String.valueOf(value_int + "°"));
                                     //val_set = Math.abs(value_int);
 
-                                        if (value_int <= -x_2)
+                                        if (value_int <= x_2_low)
                                         {
                                             image1.setImageResource(R.drawable.i3_b);
                                         }
-                                        if (value_int <= -x_1 && value_int > -x_2)
+                                        if (value_int <= x_1_low && value_int > x_2_low)
                                         {
                                             image1.setImageResource(R.drawable.i3_aa);
                                         }
 
-                                        if (value_int < -(x_1/2) && value_int > -(x_1))
+                                        if (value_int < (x_1_low/2) && value_int > x_1_low)
                                         {
                                             image1.setImageResource(R.drawable.i3_1);
                                         }
-                                        if (value_int > -(x_1/2) && value_int < (x_1/2))
+                                        if (value_int > (x_1_low/2) && value_int < (x_1/2))
                                         {
                                             image1.setImageResource(R.drawable.i3_2);
                                         }
@@ -1117,20 +1526,20 @@ public class MainActivity extends AppCompatActivity {
                                     val_set = Math.abs(value_int);
 
 
-                                    if (value_int <= -y_2)
+                                    if (value_int <= y_2_low)
                                     {
                                         image2.setImageResource(R.drawable.i2_b);
                                     }
-                                    if (value_int <= -y_1 && value_int > -y_2)
+                                    if (value_int <= y_1_low && value_int > y_2_low)
                                     {
                                         image2.setImageResource(R.drawable.i2_bb);
                                     }
 
-                                    if (value_int < -(y_1/2) && value_int > -(y_1))
+                                    if (value_int < (y_1_low/2) && value_int > (y_1_low))
                                     {
                                         image2.setImageResource(R.drawable.i2_1);
                                     }
-                                    if (value_int > -(y_1/2) && value_int < (y_1/2))
+                                    if (value_int > (y_1_low/2) && value_int < (y_1/2))
                                     {
                                         image2.setImageResource(R.drawable.i2_2);
                                     }
@@ -1159,25 +1568,25 @@ public class MainActivity extends AppCompatActivity {
                                     val_set = Math.abs(value_int);
 
 
-                                    if (value_int <= -z_2)
+                                    if (value_int <= z_2_low)
                                     {
                                         image3.setImageResource(R.drawable.i1_a);
                                     }
-                                    if (value_int <= -z_1 && value_int > -z_2)
+                                    if (value_int <= z_1_low && value_int > z_2_low)
                                     {
                                         image3.setImageResource(R.drawable.i1_aa);
                                     }
 
-                                    if (value_int <= -(z_1/1.5) && value_int > -(z_1))
+                                    if (value_int <= (z_1_low/1.5) && value_int > (z_1_low))
                                     {
                                         image3.setImageResource(R.drawable.i1_7);
                                     }
-                                    if (value_int <= -(z_1/3) && value_int > -(z_1/1.5))
+                                    if (value_int <= (z_1_low/3) && value_int > (z_1_low/1.5))
                                     {
                                         image3.setImageResource(R.drawable.i1_8);
                                     }
 
-                                    if (value_int > -(z_1/3) && value_int < (z_1/3)) //центр
+                                    if (value_int > (z_1_low/3) && value_int < (z_1/3)) //центр
                                     {
                                         image3.setImageResource(R.drawable.i1_1);
                                     }
@@ -1230,48 +1639,86 @@ public class MainActivity extends AppCompatActivity {
                                         text6.setTextColor(Color.GRAY);
                                     }
 
-                                    //Реле
-                                    //value = swapIntToFloat(registerValues3[18], registerValues3[19], 0);
-                                    value_int = registerValues3[18];
+
+                                    //Температура
+                                    value_int = registerValues3[35];
                                     texttemper.setText(String.valueOf(value_int));
 
 
                                     //Уставки
                                     //Виброскорость
-                                    value = swapIntToFloat(registerValues3[4], registerValues3[5], 0);
+                                    value = swapIntToFloat(registerValues3[20], registerValues3[21], 0);
                                     vibr_1 = value;
                                     setText2.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues3[6], registerValues3[7], 0);
+                                    value = swapIntToFloat(registerValues3[22], registerValues3[23], 0);
                                     vibr_2 = value;
                                     setText4.setText(String.valueOf(value));
 
                                     //ось X
-                                    value = swapIntToFloat(registerValues2[56], registerValues2[57], 0);
+                                    //Ось X. Верхняя предупредительная уставка
+                                    value = swapIntToFloat(registerValues2[60], registerValues2[61], 0);
                                     x_1 = value;
                                     setText6.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[58], registerValues2[59], 0);
+                                    //Ось X. Верхняя аварийная уставка
+                                    value = swapIntToFloat(registerValues2[62], registerValues2[63], 0);
                                     x_2 = value;
                                     setText8.setText(String.valueOf(value));
 
+                                    //Ось X. Нижняя предупредительная уставка
+                                    value = swapIntToFloat(registerValues2[56], registerValues2[57], 0);
+                                    x_1_low = value;
+                                    setText24.setText(String.valueOf(value));
+
+                                    //Ось X. Нижняя аварийная уставка
+                                    value = swapIntToFloat(registerValues2[58], registerValues2[59], 0);
+                                    x_2_low = value;
+                                    setText26.setText(String.valueOf(value));
+
                                     //ось Y
-                                    value = swapIntToFloat(registerValues2[72], registerValues2[73], 0);
+                                    //Ось Y. Верхняя предупредительная уставка
+                                    value = swapIntToFloat(registerValues2[80], registerValues2[81], 0);
                                     y_1 = value;
                                     setText10.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[74], registerValues2[75], 0);
+                                    //Ось Y. Верхняя аварийная уставка
+                                    value = swapIntToFloat(registerValues2[82], registerValues2[83], 0);
                                     y_2 = value;
                                     setText12.setText(String.valueOf(value));
 
+                                    //Ось Y. Нижняя предупредительная уставка
+                                    value = swapIntToFloat(registerValues2[76], registerValues2[77], 0);
+                                    y_1_low = value;
+                                    setText28.setText(String.valueOf(value));
+
+                                    //Ось Y. Нижняя аварийная уставка
+                                    value = swapIntToFloat(registerValues2[78], registerValues2[79], 0);
+                                    y_2_low = value;
+                                    setText30.setText(String.valueOf(value));
+
                                     //ось Z
-                                    value = swapIntToFloat(registerValues2[88], registerValues2[89], 0);
+                                    //Ось Z. Верхняя предупредительная уставка
+                                    value = swapIntToFloat(registerValues3[0], registerValues3[1], 0);
                                     z_1 = value;
                                     setText14.setText(String.valueOf(value));
 
-                                    value = swapIntToFloat(registerValues2[90], registerValues2[91], 0);
+                                    //Ось Z. Верхняя аварийная уставка
+                                    value = swapIntToFloat(registerValues3[2], registerValues3[3], 0);
                                     z_2 = value;
                                     setText16.setText(String.valueOf(value));
+
+                                    //Ось Z. Нижняя предупредительная уставка
+                                    value = swapIntToFloat(registerValues2[96], registerValues2[97], 0);
+                                    z_1_low = value;
+                                    setText32.setText(String.valueOf(value));
+
+                                    //Ось Z. Нижняя аварийная уставка
+                                    value = swapIntToFloat(registerValues2[98], registerValues2[99], 0);
+                                    z_2_low = value;
+                                    setText34.setText(String.valueOf(value));
+
+
 
                                     setText18.setText(String.valueOf(registerValues[84]));
 

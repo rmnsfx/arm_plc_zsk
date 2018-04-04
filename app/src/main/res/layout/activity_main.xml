@@ -239,12 +239,33 @@
 
 
             <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+                <TextView
+                        android:text="Ось X. Нижняя предупредительная уставка, град."
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:id="@+id/setText23"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:textSize="14sp"
+                        android:text="-"
+                        android:id="@+id/setText24"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+
+            <LinearLayout
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" >
                 <TextView
-                        android:text="Ось X. Предупредительная уставка, град."
+                        android:text="Ось X. Верхняя предупредительная уставка, град."
                         android:layout_width="0dip"
                         android:layout_height="match_parent"
                         android:id="@+id/setText5"
@@ -259,6 +280,26 @@
                         android:layout_weight=".3"/>
             </LinearLayout>
 
+            <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Ось X. Нижняя аварийная уставка, град."
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setText25"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:text="-"
+                        android:id="@+id/setText26"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+
 
             <LinearLayout
                     android:layout_marginTop="15dp"
@@ -266,7 +307,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось X. Аварийная уставка, град."
+                        android:text="Ось X. Верхняя аварийная уставка, град."
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:id="@+id/setText7"
@@ -280,13 +321,36 @@
                         android:layout_weight=".3"/>
             </LinearLayout>
 
+
+
+            <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Ось Y. Нижняя предупредительная уставка, град."
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setText27"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:text="-"
+                        android:id="@+id/setText28"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+
+
             <LinearLayout
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Y. Предупредительная уставка, град."
+                        android:text="Ось Y. Верхняя предупредительная уставка, град."
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:id="@+id/setText9"
@@ -300,23 +364,25 @@
                         android:layout_weight=".3"/>
             </LinearLayout>
 
+
+
             <LinearLayout
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Y. Аварийная уставка, град."
+                        android:text="Ось Y. Нижняя аварийная уставка, град."
                         android:layout_width="0dip"
-                        android:layout_height="match_parent"
-                        android:id="@+id/setText11"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setText29"
                         android:layout_weight="1"/>
                 <TextView
                         android:layout_width="0dip"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:textAlignment="textEnd"
                         android:text="-"
-                        android:id="@+id/setText12"
+                        android:id="@+id/setText30"
                         android:layout_weight=".3"/>
             </LinearLayout>
 
@@ -327,7 +393,51 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Z. Предупредительная уставка, град."
+                        android:text="Ось Y. Верхняя аварийная уставка, град."
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setText11"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:text="-"
+                        android:id="@+id/setText12"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Ось Z. Нижняя предупредительная уставка, град."
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setText31"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:text="-"
+                        android:id="@+id/setText32"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Ось Z. Верхняя предупредительная уставка, град."
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:id="@+id/setText13"
@@ -341,13 +451,36 @@
                         android:layout_weight=".3"/>
             </LinearLayout>
 
+
             <LinearLayout
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Ось Z. Аварийная уставка, град."
+                        android:text="Ось Z. Нижняя аварийная уставка, град."
+                        android:layout_width="0dip"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/setText33"
+                        android:layout_weight="1"/>
+                <TextView
+                        android:layout_width="0dip"
+                        android:layout_height="match_parent"
+                        android:textAlignment="textEnd"
+                        android:id="@+id/setText34"
+                        android:text="-"
+                        android:layout_weight=".3"/>
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <TextView
+                        android:text="Ось Z. Верхняя аварийная уставка, град."
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:id="@+id/setText15"
@@ -423,7 +556,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                 <TextView
-                        android:text="Задержка реле, мс"
+                        android:text="Задержка реле, сек."
                         android:layout_width="0dip"
                         android:layout_height="wrap_content"
                         android:id="@+id/setText21"
