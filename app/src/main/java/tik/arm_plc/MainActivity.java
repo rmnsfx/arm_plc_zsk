@@ -1646,7 +1646,7 @@ public class MainActivity extends AppCompatActivity {
 
                 flag_write = 1;
                 input_number_register = 96;
-                input_value = 0;
+                input_value = 1;
 
 
             }
@@ -1853,7 +1853,7 @@ public class MainActivity extends AppCompatActivity {
                                     m.writeMultipleRegisters(slaveId, 1280, int_array);
 
                                 else if (input_number_register == 283)
-                                    m.writeMultipleRegisters(slaveId, 1283, int_array);
+                                    m.writeMultipleRegisters(slaveId, 1282, int_array);
 
                                 else if (input_number_register == 301)
                                     m.writeMultipleRegisters(slaveId, 1300, int_array);
@@ -1921,7 +1921,7 @@ public class MainActivity extends AppCompatActivity {
                                     if ( value_int >> 14 != 0 )
                                         value_int = value_int | ~((1 << 15) - 1);
 
-                                    text2.setText(String.valueOf(value_int + "°"));
+/*                                    text2.setText(String.valueOf(value_int + "°"));
                                     //val_set = Math.abs(value_int);
 
                                         if (value_int <= x_2_low)
@@ -1953,7 +1953,7 @@ public class MainActivity extends AppCompatActivity {
                                         if (value_int >= x_2)
                                         {
                                             image1.setImageResource(R.drawable.i3_a);
-                                        }
+                                        }*/
 
                                     //ось Y
                                     //value = swapIntToFloat(registerValues2[70], registerValues2[71], 0);
@@ -2089,10 +2089,12 @@ public class MainActivity extends AppCompatActivity {
                                     //Виброскорость
                                     value = swapIntToFloat(registerValues3[20], registerValues3[21], 0);
                                     vibr_1 = value;
+                                    value = round(value, 2);
                                     setText2.setText(String.valueOf(value));
 
                                     value = swapIntToFloat(registerValues3[22], registerValues3[23], 0);
                                     vibr_2 = value;
+                                    value = round(value, 2);
                                     setText4.setText(String.valueOf(value));
 
                                     //ось X
@@ -2162,22 +2164,43 @@ public class MainActivity extends AppCompatActivity {
                                     //Виброускорение Х
                                     value = swapIntToFloat(registerValues3[54], registerValues3[55], 0);
                                     vibr_a_x = value;
+                                    value = round(value, 2);
                                     setText36.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues3[60], registerValues3[61], 0);
+                                    setText38.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues3[62], registerValues3[63], 0);
+                                    setText40.setText(String.valueOf(value));
 
                                     //Виброускорение Y
                                     value = swapIntToFloat(registerValues3[74], registerValues3[75], 0);
                                     vibr_a_y = value;
+                                    value = round(value, 2);
                                     setText42.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues3[80], registerValues3[81], 0);
+                                    setText44.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues3[82], registerValues3[83], 0);
+                                    setText46.setText(String.valueOf(value));
 
                                     //Виброускорение Z
                                     value = swapIntToFloat(registerValues3[94], registerValues3[95], 0);
                                     vibr_a_z = value;
+                                    value = round(value, 2);
                                     setText48.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues4[0], registerValues4[1], 0);
+                                    setText50.setText(String.valueOf(value));
+
+                                    value = swapIntToFloat(registerValues4[2], registerValues4[3], 0);
+                                    setText52.setText(String.valueOf(value));
 
 
                                     setText18.setText(String.valueOf(registerValues[84]));
 
-                                    setText20.setText(String.valueOf(registerValues[96]));
+                                    //setText20.setText(String.valueOf(registerValues[96]));
 
                                     setText22.setText(String.valueOf(registerValues[86]));
 
@@ -2196,7 +2219,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 text1.setText("-");
-                                text2.setText("-");
+                                //text2.setText("-");
                                 text3.setText("-");
                                 text4.setText("-");
                                 text5.setText("-");
