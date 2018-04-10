@@ -57,6 +57,7 @@ import android.content.DialogInterface;
 public class MainActivity extends AppCompatActivity {
 
     private Button enableButton;
+    private Button quit_button;
     private TextView mResultEditText;
     private TextView text1;
     private TextView text2;
@@ -105,6 +106,29 @@ public class MainActivity extends AppCompatActivity {
     private TextView setText34;
 
 
+    private TextView setText35;
+    private TextView setText36;
+    private TextView setText37;
+    private TextView setText38;
+    private TextView setText39;
+    private TextView setText40;
+
+    private TextView setText41;
+    private TextView setText42;
+    private TextView setText43;
+    private TextView setText44;
+    private TextView setText45;
+    private TextView setText46;
+
+    private TextView setText47;
+    private TextView setText48;
+    private TextView setText49;
+    private TextView setText50;
+    private TextView setText51;
+    private TextView setText52;
+
+
+
     private Switch mSwitch;
     private ImageView image1;
     private ImageView image2;
@@ -135,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
     int[] registerValues;
     int[] registerValues2;
     int[] registerValues3;
+    int[] registerValues4;
 
     int flag_write = 0;
     int input_number_register = 0;
@@ -161,16 +186,31 @@ public class MainActivity extends AppCompatActivity {
     float z_1_low = 0;
     float z_2_low = 0;
 
+    float vibr_a_x = 0;
+    float vibr_a_x_pred = 0;
+    float vibr_a_x_avar = 0;
+
+    float vibr_a_y = 0;
+    float vibr_a_y_pred = 0;
+    float vibr_a_y_avar = 0;
+
+    float vibr_a_z = 0;
+    float vibr_a_z_pred = 0;
+    float vibr_a_z_avar = 0;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         enableButton = (Button) findViewById(R.id.button1);
-        mResultEditText = (TextView) findViewById(R.id.textView8);
+        quit_button = (Button) findViewById(R.id.button2);
+        //mResultEditText = (TextView) findViewById(R.id.textView8);
 
         text1 = (TextView) findViewById(R.id.textView8);
-        text2 = (TextView) findViewById(R.id.textView11);
+        //text2 = (TextView) findViewById(R.id.textView11);
         text3 = (TextView) findViewById(R.id.textView13);
         text4 = (TextView) findViewById(R.id.textView15);
 
@@ -199,8 +239,8 @@ public class MainActivity extends AppCompatActivity {
         setText16= (TextView) findViewById(R.id.setText16);
         setText17= (TextView) findViewById(R.id.setText17);
         setText18= (TextView) findViewById(R.id.setText18);
-        setText19= (TextView) findViewById(R.id.setText19);
-        setText20= (TextView) findViewById(R.id.setText20);
+        //setText19= (TextView) findViewById(R.id.setText19);
+        //setText20= (TextView) findViewById(R.id.setText20);
         setText21= (TextView) findViewById(R.id.setText21);
         setText22= (TextView) findViewById(R.id.setText22);
 
@@ -220,9 +260,37 @@ public class MainActivity extends AppCompatActivity {
         setText34= (TextView) findViewById(R.id.setText34);
 
 
+        //виброускорение по оси Х
+        setText35= (TextView) findViewById(R.id.setText35);
+        setText36= (TextView) findViewById(R.id.setText36);
+        setText37= (TextView) findViewById(R.id.setText37);
+        setText38= (TextView) findViewById(R.id.setText38);
+        setText39= (TextView) findViewById(R.id.setText39);
+        setText40= (TextView) findViewById(R.id.setText40);
+
+        //виброускорение по оси Y
+        setText41= (TextView) findViewById(R.id.setText41);
+        setText42= (TextView) findViewById(R.id.setText42);
+        setText43= (TextView) findViewById(R.id.setText43);
+        setText44= (TextView) findViewById(R.id.setText44);
+        setText45= (TextView) findViewById(R.id.setText45);
+        setText46= (TextView) findViewById(R.id.setText46);
+
+        //виброускорение по оси Z
+        setText47= (TextView) findViewById(R.id.setText47);
+        setText48= (TextView) findViewById(R.id.setText48);
+        setText49= (TextView) findViewById(R.id.setText49);
+        setText50= (TextView) findViewById(R.id.setText50);
+        setText51= (TextView) findViewById(R.id.setText51);
+        setText52= (TextView) findViewById(R.id.setText52);
+
+
+
+
+
         mSwitch = (Switch) findViewById(R.id.switch3);
 
-        // устанавливаем переключатель программно в значение ON
+        // устанавливаем переключатель программно в значение OFF
         mSwitch.setChecked(false);
 
         // добавляем слушателя
@@ -1051,6 +1119,343 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+        setText37.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброускорение, ось X. Предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 261;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        setText39.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброускорение, ось X. Аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 263;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        setText43.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброускорение, ось Y. Предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 281;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        setText45.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброускорение, ось Y. Аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 283;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        setText49.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброускорение, ось Z. Предупредительная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 301;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
+        setText51.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Виброускорение, ось Z. Аварийная уставка, град.");
+                builder.setMessage("Введите новое значение");
+                final EditText input = new EditText(MainActivity.this);
+                //input.setId(TEXT_ID);
+                builder.setView(input);
+
+                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //String value = input.getText().toString();
+                        //Log.d(TAG, "User name: " + value);
+
+                        flag_write = 1;
+                        input_number_register = 303;
+
+                        try
+                        {
+
+                            float_input_value = Float.parseFloat(input.getText().toString());
+
+                        } catch (Exception e)
+                        {
+
+                            mHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            e.printStackTrace();
+                        }
+
+                        return;
+                    }
+                });
+
+                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+            }
+        });
+
         setText17.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1107,60 +1512,60 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        setText19.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Квитирование реле");
-                builder.setMessage("Введите новое значение");
-                final EditText input = new EditText(MainActivity.this);
-                //input.setId(TEXT_ID);
-                builder.setView(input);
-
-                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        //String value = input.getText().toString();
-                        //Log.d(TAG, "User name: " + value);
-
-                        flag_write = 1;
-                        input_number_register = 96;
-
-                        try
-                        {
-                            input_value = Integer.parseInt(input.getText().toString());
-
-                        } catch (Exception e)
-                            {
-
-                                mHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        e.printStackTrace();
-                    }
-
-                        return;
-                    }
-                });
-
-                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    }
-                });
-
-                AlertDialog alert = builder.create();
-                alert.show();
-
-            }
-        });
+//        setText19.setOnClickListener(new OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//                builder.setTitle("Квитирование реле");
+//                builder.setMessage("Введите новое значение");
+//                final EditText input = new EditText(MainActivity.this);
+//                //input.setId(TEXT_ID);
+//                builder.setView(input);
+//
+//                builder.setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int whichButton) {
+//                        //String value = input.getText().toString();
+//                        //Log.d(TAG, "User name: " + value);
+//
+//                        flag_write = 1;
+//                        input_number_register = 96;
+//
+//                        try
+//                        {
+//                            input_value = Integer.parseInt(input.getText().toString());
+//
+//                        } catch (Exception e)
+//                            {
+//
+//                                mHandler.post(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    Toast.makeText(getApplicationContext(), "Введено неверное значение", Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//                        e.printStackTrace();
+//                    }
+//
+//                        return;
+//                    }
+//                });
+//
+//                builder.setNegativeButton("Отмена", new DialogInterface.OnClickListener() {
+//
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        return;
+//                    }
+//                });
+//
+//                AlertDialog alert = builder.create();
+//                alert.show();
+//
+//            }
+//        });
 
         setText21.setOnClickListener(new OnClickListener() {
             @Override
@@ -1236,11 +1641,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        image1 = (ImageView) findViewById(R.id.imageView);
+        quit_button.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) {
+
+                flag_write = 1;
+                input_number_register = 96;
+                input_value = 0;
+
+
+            }
+        });
+
+        //image1 = (ImageView) findViewById(R.id.imageView);
         image2 = (ImageView) findViewById(R.id.imageView2);
         image3 = (ImageView) findViewById(R.id.imageView3);
 
-        image1.setImageResource(R.drawable.i0_3);
+        //image1.setImageResource(R.drawable.i0_3);
         image2.setImageResource(R.drawable.i0_2);
         image3.setImageResource(R.drawable.i0_1);
 
@@ -1426,6 +1842,28 @@ public class MainActivity extends AppCompatActivity {
                                     m.writeMultipleRegisters(slaveId, 1222, int_array);
 
 
+
+                                else if (input_number_register == 261)
+                                    m.writeMultipleRegisters(slaveId, 1260, int_array);
+
+                                else if (input_number_register == 263)
+                                    m.writeMultipleRegisters(slaveId, 1262, int_array);
+
+                                else if (input_number_register == 281)
+                                    m.writeMultipleRegisters(slaveId, 1280, int_array);
+
+                                else if (input_number_register == 283)
+                                    m.writeMultipleRegisters(slaveId, 1283, int_array);
+
+                                else if (input_number_register == 301)
+                                    m.writeMultipleRegisters(slaveId, 1300, int_array);
+
+                                else if (input_number_register == 303)
+                                    m.writeMultipleRegisters(slaveId, 1302, int_array);
+
+
+
+
                                 else if (input_number_register == 84)
                                     m.writeSingleRegister(slaveId, 1084, input_value);
 
@@ -1463,7 +1901,9 @@ public class MainActivity extends AppCompatActivity {
                             Thread.sleep(50);
                             registerValues2 = m.readHoldingRegisters(slaveId, 1100, 100);
                             Thread.sleep(50);
-                            registerValues3 = m.readHoldingRegisters(slaveId, 1200, 50);
+                            registerValues3 = m.readHoldingRegisters(slaveId, 1200, 100);
+                            Thread.sleep(50);
+                            registerValues4 = m.readHoldingRegisters(slaveId, 1300, 50);
 
                             mHandler.post(new Runnable() {
                                 @Override
@@ -1517,13 +1957,13 @@ public class MainActivity extends AppCompatActivity {
 
                                     //ось Y
                                     //value = swapIntToFloat(registerValues2[70], registerValues2[71], 0);
-                                    value_int =  registerValues2[70];
+                                    value_int =  registerValues2[74];
 
                                     if ( value_int >> 14 != 0 )
                                         value_int = value_int | ~((1 << 15) - 1);
 
                                     text3.setText(String.valueOf(value_int  + "°"));
-                                    val_set = Math.abs(value_int);
+                                    //val_set = Math.abs(value_int);
 
 
                                     if (value_int <= y_2_low)
@@ -1559,13 +1999,13 @@ public class MainActivity extends AppCompatActivity {
 
                                     //ось Z
                                     //value = swapIntToFloat(registerValues2[86], registerValues2[87], 0);
-                                    value_int =  registerValues2[86];
+                                    value_int =  registerValues2[94];
 
                                     if ( value_int >> 14 != 0 )
                                         value_int = value_int | ~((1 << 15) - 1);
 
                                     text4.setText(String.valueOf(value_int  + "°"));
-                                    val_set = Math.abs(value_int);
+                                    //val_set = Math.abs(value_int);
 
 
                                     if (value_int <= z_2_low)
@@ -1641,7 +2081,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     //Температура
-                                    value_int = registerValues3[35];
+                                    value_int = registerValues3[34];
                                     texttemper.setText(String.valueOf(value_int));
 
 
@@ -1718,6 +2158,21 @@ public class MainActivity extends AppCompatActivity {
                                     z_2_low = value;
                                     setText34.setText(String.valueOf(value));
 
+
+                                    //Виброускорение Х
+                                    value = swapIntToFloat(registerValues3[54], registerValues3[55], 0);
+                                    vibr_a_x = value;
+                                    setText36.setText(String.valueOf(value));
+
+                                    //Виброускорение Y
+                                    value = swapIntToFloat(registerValues3[74], registerValues3[75], 0);
+                                    vibr_a_y = value;
+                                    setText42.setText(String.valueOf(value));
+
+                                    //Виброускорение Z
+                                    value = swapIntToFloat(registerValues3[94], registerValues3[95], 0);
+                                    vibr_a_z = value;
+                                    setText48.setText(String.valueOf(value));
 
 
                                     setText18.setText(String.valueOf(registerValues[84]));
